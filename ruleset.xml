@@ -5,6 +5,12 @@
     <!-- There should not be any code in the bundle Resources directory. -->
     <exclude-pattern>*/Resources/*</exclude-pattern>
 
+    <!-- Symfony follows the standards defined in the PSR-0, PSR-1 and PSR-2 documents. -->
+
+    <!-- Include the whole PSR-1 standard -->
+    <rule ref="PSR1"/>
+    <!-- Include the whole PSR-2 standard -->
+    <rule ref="PSR2"/>
     <!--
 
     See the [documented coding standard](http://symfony.com/doc/current/contributing/code/standards.html)
