@@ -13,12 +13,9 @@
 
     # Structure
 
-    * Declare class properties before methods;
-    * Declare public methods first, then protected ones and finally private ones.
-    * Use namespaces for all classes;
-    * Add PHPDoc blocks for all classes, methods, and functions;
     * The @package and @subpackage annotations are not used.
     * Use uppercase strings for constants with words separated with underscores
+    * Exception message strings should be concatenated using sprintf
 
     # Naming Conventions
 
@@ -38,6 +35,7 @@
     <rule ref="Squiz.ControlStructures.LowercaseDeclaration"/>
     <rule ref="Squiz.PHP.LowercasePHPFunctions"/>
     <rule ref="Squiz.Scope.MemberVarScope"/>
+    <rule ref="Squiz.Strings.ConcatenationSpacing"/>
 
     <!-- We provide our own subclass of PEAR's ClassComment and FunctionComment sniff, but these will do: -->
     <rule ref="PEAR.Commenting.InlineComment"/>
