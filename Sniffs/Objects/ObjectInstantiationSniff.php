@@ -61,14 +61,28 @@ class Symfony2_Sniffs_Objects_ObjectInstantiationSniff implements PHP_CodeSniffe
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $object = $phpcsFile->findNext(T_STRING, $stackPtr + 1);
+        $allowed = array(
+            T_STRING,
+            T_NS_SEPARATOR,
+        );
 
-        if ($object && $tokens[$object + 1]['code'] !== T_OPEN_PARENTHESIS) {
-            $phpcsFile->addError(
-                'Use parentheses when instantiating classes',
-                $stackPtr,
-                'Invalid'
-            );
+        $object = $stackPtr;
+        $line   = $tokens[$object]['line'];
+
+        while ($object && $tokens[$object]['line'] === $line) {
+            $object = $phpcsFile->findNext($allowed, $object + 1);
+
+            if ($tokens[$object]['line'] === $line && !in_array($tokens[$object + 1]['code'], $allowed)) {
+                if ($tokens[$object + 1]['code'] !== T_OPEN_PARENTHESIS) {
+                    $phpcsFile->addError(
+                        'Use parentheses when instantiating classes',
+                        $stackPtr,
+                        'Invalid'
+                    );
+                }
+
+                break;
+            }
         }
 
     }//end process()

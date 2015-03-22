@@ -124,8 +124,10 @@ class Symfony2_Sniffs_NamingConventions_ValidClassNameSniff implements PHP_CodeS
              */
             if ('T_ABSTRACT' == $tokens[$stackPtr]['type']) {
                 $name = $phpcsFile->findNext(T_STRING, $stackPtr);
-
-                if ($name && substr($tokens[$name]['content'], 0, 8) != 'Abstract') {
+                $function = $phpcsFile->findNext(T_FUNCTION, $stackPtr);
+                
+                // making sure we're not dealing with an abstract function
+                if ($name && (is_null($function) || $name < $function) && substr($tokens[$name]['content'], 0, 8) != 'Abstract') {
                     $phpcsFile->addError(
                         'Abstract class name is not prefixed with "Abstract"',
                         $stackPtr,
