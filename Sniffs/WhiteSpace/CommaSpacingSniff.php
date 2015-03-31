@@ -32,8 +32,8 @@ class Symfony2_Sniffs_WhiteSpace_CommaSpacingSniff implements PHP_CodeSniffer_Sn
      * @var array
      */
     public $supportedTokenizers = array(
-                                   'PHP',
-                                  );
+        'PHP',
+    );
 
 
     /**
@@ -44,8 +44,8 @@ class Symfony2_Sniffs_WhiteSpace_CommaSpacingSniff implements PHP_CodeSniffer_Sn
     public function register()
     {
         return array(
-                T_COMMA,
-               );
+            T_COMMA,
+        );
 
     }//end register()
 
@@ -63,19 +63,12 @@ class Symfony2_Sniffs_WhiteSpace_CommaSpacingSniff implements PHP_CodeSniffer_Sn
         $tokens = $phpcsFile->getTokens();
         $line   = $tokens[$stackPtr]['line'];
 
-        while ($tokens[$stackPtr]['line'] == $line) {
-
-            // making sure the comma isn't at the end of a line
-            if ($tokens[($stackPtr + 1)]['line'] === $line && $tokens[($stackPtr + 1)]['code'] !== T_WHITESPACE) {
-                $phpcsFile->addError(
-                    'Add a single space after each comma delimiter',
-                    $stackPtr,
-                    'Invalid'
-                );
-                break;
-            }
-
-            $stackPtr++;
+        if ($tokens[$stackPtr + 1]['line'] === $line && $tokens[$stackPtr + 1]['code'] !== T_WHITESPACE) {
+            $phpcsFile->addError(
+                'Add a single space after each comma delimiter',
+                $stackPtr,
+                'Invalid'
+            );
         }
 
     }//end process()
