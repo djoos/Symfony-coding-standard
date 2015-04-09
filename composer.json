@@ -3,7 +3,7 @@
     "description": "Codesniffer ruleset for the Symfony2 coding standard",
     "target-dir": "escapestudios/phpcs/Symfnoy2",
     "require": {
-        "squizlabs/php_codesniffer": "~2.0",
+        "squizlabs/php_codesniffer": "~2.0"
     },
     "minimum-stability": "dev"
 }
