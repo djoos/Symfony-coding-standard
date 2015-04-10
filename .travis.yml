@@ -18,7 +18,7 @@ before_script:
     - export PHPCS_DIR=/tmp/phpcs
     - export PHPCS_BRANCH=master
     - mkdir -p $PHPCS_DIR && git clone --depth 1 https://github.com/squizlabs/PHP_CodeSniffer.git -b $PHPCS_BRANCH $PHPCS_DIR
-    - $PHPCS_DIR/scripts/phpcs --config-set installed_paths ../$(pwd)
+    - $PHPCS_DIR/scripts/phpcs --config-set installed_paths $(dirname $(pwd))
 
 script:
     - $PHPCS_DIR/scripts/phpcs -i
