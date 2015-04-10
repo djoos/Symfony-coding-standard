@@ -1,7 +1,7 @@
 Testing
 =======
 
-Contributions to this cookbook will only be accepted if all tests pass successfully:
+Contributions to this repository will only be accepted if all tests pass successfully:
 
 * PHP syntax/lint checks
 * Unit tests: [PHPUnit](https://phpunit.de/)
