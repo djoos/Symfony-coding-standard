@@ -1,5 +1,5 @@
 {
-    "name": "escapestudios/Symfony2-coding-standard",
+    "name": "escapestudios/symfony2-coding-standard",
     "type": "coding-standard",
     "description": "CodeSniffer ruleset for the Symfony2 coding standard",
     "keywords": ["Symfony2", "coding standard", "phpcs"],
