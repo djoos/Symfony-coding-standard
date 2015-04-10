@@ -4,6 +4,7 @@
 
     <target name="test" depends="vendor,lint,phpunit,phpcs" />
     <target name="report" depends="vendor,lint,prepare,phpunit-report,phpcs-report" />
+    <target name="travis" depends="lint" />
 
     <target name="prepare" depends="clean" description="Prepare for build">
         <mkdir dir="${basedir}/build/coverage" />
