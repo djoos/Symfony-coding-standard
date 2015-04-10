@@ -21,9 +21,7 @@ before_script:
     - $PHPCS_DIR/scripts/phpcs --config-set installed_paths $(dirname $(pwd))
 
 script:
-    - $PHPCS_DIR/scripts/phpcs -i
     - ant travis
-    - phpunit --filter Symfony2_* /tmp/phpcs/tests/AllTests.php
 
 branches:
   except:
