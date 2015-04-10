@@ -1,37 +1,36 @@
 Symfony2 PHP CodeSniffer Coding Standard
 ========================================
 
-A code standard to check against the [Symfony coding standards](http://symfony.com/doc/current/contributing/code/standards.html), shamelessly copied from the -disappeared- opensky/Symfony2-coding-standard repository.
+A code standard to check against the [Symfony coding standards](http://symfony.com/doc/current/contributing/code/standards.html), originally shamelessly copied from the -disappeared- opensky/Symfony2-coding-standard repository.
 
 Installation
 ------------
 
-1. Install phpcs:
+1. Install [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
-        pear install PHP_CodeSniffer
+2. Copy, symlink or check out this repository
 
-2. Find your PEAR directory:
+        git clone git://github.com/escapestudios/Symfony2-coding-standard.git Symfony2-coding-standard
 
-        pear config-show | grep php_dir
+---OR---
 
-3. Copy, symlink or check out this repo to a folder called Symfony2 inside the
-   phpcs `Standards` directory:
+2.1. [Install Composer](https://getcomposer.org/doc/00-intro.md)
 
-        cd /path/to/pear/PHP/CodeSniffer/Standards
-        git clone git://github.com/escapestudios/Symfony2-coding-standard.git Symfony2
+2.2. Create a composer.json file which contains:
 
-4. Set Symfony2 as your default coding standard:
+    {
+        "require-dev": {
+            "escapestudios/symfony2-coding-standard": "~2.0"
+        }
+    }
 
-        phpcs --config-set default_standard Symfony2
+2.3. Install dev dependencies
 
-5. ...
+    composer update --dev
 
-6. Profit!
+3. Done!
 
-        cd /path/to/my/project
-        phpcs
-        phpcs path/to/my/file.php
-
+        phpcs --standard=/path/to/standard /path/to/code
 
 Contributing
 ------------
