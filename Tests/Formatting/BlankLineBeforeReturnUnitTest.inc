@@ -1,4 +1,5 @@
 <?php
+
 function validFunctionReturnOne()
 {
     return;
@@ -30,4 +31,3 @@ switch ($condition) {
     default:
         return false;
 }
-

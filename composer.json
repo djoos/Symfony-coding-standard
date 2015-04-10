@@ -25,7 +25,7 @@
         "source": "https://github.com/escapestudios/Symfony2-coding-standard",
         "issues": "https://github.com/escapestudios/Symfony2-coding-standard/issues"
     },
-    "suggest": {
+    "require-dev": {
         "squizlabs/php_codesniffer": "~2.0"
     },
     "target-dir": "escapestudios/Symfony2-coding-standard"

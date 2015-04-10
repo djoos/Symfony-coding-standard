@@ -1,3 +1,5 @@
+[![Build Status](https://secure.travis-ci.org/escapestudios/Symfony2-coding-standard.png)](http://travis-ci.org/escapestudios/Symfony2-coding-standard)
+
 Symfony2 PHP CodeSniffer Coding Standard
 ========================================
 
@@ -10,7 +12,7 @@ Installation
 
 2. Copy, symlink or check out this repository
 
-        git clone git://github.com/escapestudios/Symfony2-coding-standard.git Symfony2-coding-standard
+        git clone git://github.com/escapestudios/Symfony2-coding-standard.git Symfony2
 
 ---OR---
 
@@ -28,20 +30,10 @@ Installation
 
     composer update --dev
 
+3. Add Symfony2 to the PHP_CodeSniffer install path 
+
+    phpcs --config-set installed_paths /path/to/Symfony2
+
 3. Done!
 
-        phpcs --standard=/path/to/standard /path/to/code
-
-Contributing
-------------
-
-If you do contribute code to these sniffs, please make sure it conforms to the PEAR
-coding standard and that the Symfony2-coding-standard unit tests still pass.
-
-To check the coding standard, run from the Symfony2-coding-standard source root:
-
-    $ phpcs --ignore=*/tests/* --standard=PEAR . -n
-
-The unit-tests are run from within the PHP_CodeSniffer directory:
-
-    $ phpunit --filter Symfony2_* tests/AllTests.php
+        phpcs /path/to/code

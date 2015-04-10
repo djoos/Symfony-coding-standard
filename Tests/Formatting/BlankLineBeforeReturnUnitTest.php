@@ -1,4 +1,5 @@
 <?php
+
 /**
  * This file is part of the Symfony2-coding-standard (phpcs standard)
  *
@@ -40,7 +41,6 @@ class Symfony2_Tests_Formatting_BlankLineBeforeReturnUnitTest extends AbstractSn
         return array(
             23 => 1,
         );
-
     }
 
     /**
@@ -54,6 +54,5 @@ class Symfony2_Tests_Formatting_BlankLineBeforeReturnUnitTest extends AbstractSn
     public function getWarningList()
     {
         return array();
-
     }
 }

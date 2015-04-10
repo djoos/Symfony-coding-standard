@@ -1,0 +1,74 @@
+<project name="Symfony2-coding-standard" default="test">
+    <property file="build.properties" />
+    <available property="composer.exists" file="${composer.path}" />
+
+    <target name="test" depends="vendor,lint,phpunit,phpcs" />
+    <target name="report" depends="vendor,lint,prepare,phpunit-report,phpcs-report" />
+
+    <target name="prepare" depends="clean" description="Prepare for build">
+        <mkdir dir="${basedir}/build/coverage" />
+        <mkdir dir="${basedir}/build/logs" />
+    </target>
+
+    <target name="clean" description="Cleanup build artifacts">
+        <delete dir="${basedir}/build" />
+    </target>
+
+    <target name="vendor" description="Load composer repositories" depends="composer">
+        <exec executable="composer" failonerror="true">
+            <arg value="install" />
+        </exec>
+    </target>
+
+    <target name="composer" description="Download composer" unless="composer.exists">
+        <get src="${composer.url}" dest="${composer.path}" />
+    </target>
+
+    <target name="lint" description="Perform syntax check">
+        <apply executable="php" failonerror="true">
+            <arg value="-l" />
+            <fileset dir="${basedir}">
+                <include name="**/*.php" />
+                <exclude name="vendor/" />
+            </fileset>
+        </apply>
+    </target>
+
+    <target name="phpunit" description="Run unit tests with PHPUnit">
+        <exec executable="phpunit" failonerror="true" >
+            <arg value="--filter=Symfony2_*" />
+            <arg path="${basedir}/vendor/squizlabs/php_codesniffer/tests/AllTests.php" />
+        </exec>
+    </target>
+
+    <target name="phpunit-report" description="Run unit tests with PHPUnit and produce report output">
+        <exec executable="phpunit" failonerror="true" >
+            <arg value="--coverage-html" />
+            <arg value="${basedir}/build/coverage" />
+            <arg value="--coverage-clover" />
+            <arg value="${basedir}/build/logs/clover.xml" />
+            <arg value="--log-junit" />
+            <arg value="${basedir}/build/logs/junit.xml" />
+            <arg value="--filter=Symfony2_*" />
+            <arg path="${basedir}/vendor/squizlabs/php_codesniffer/tests/AllTests.php" />
+        </exec>
+    </target>
+
+    <target name="phpcs" description="Find coding standard violations using PHP Code Sniffer">
+        <exec executable="phpcs">
+            <arg value="--standard=${phpcs.standard}" />
+            <arg value="--ignore=vendor/*" /> 
+            <arg path="${basedir}" />
+        </exec>
+    </target>
+
+    <target name="phpcs-report" description="Find coding standard violations using PHP Code Sniffer">
+        <exec executable="phpcs" output="/dev/null">
+            <arg value="--report=checkstyle" />
+            <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
+            <arg value="--standard=${phpcs.standard}" />
+            <arg value="--ignore=vendor/*" /> 
+            <arg path="${basedir}" />
+        </exec>
+    </target>
+</project>
