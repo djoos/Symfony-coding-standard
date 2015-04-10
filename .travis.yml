@@ -22,6 +22,7 @@ before_script:
 
 script:
     - ant travis
+    - phpunit --filter Symfony2_* /tmp/phpcs/tests/AllTests.php
 
 branches:
   except:
