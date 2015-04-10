@@ -34,6 +34,6 @@ Installation
 
     phpcs --config-set installed_paths /path/to/Symfony2
 
-3. Done!
+4. Done!
 
         phpcs /path/to/code
