@@ -1,9 +1,32 @@
 {
-    "name": "escapestudios/symfony2-coding-standard",
-    "description": "Codesniffer ruleset for the Symfony2 coding standard",
-    "target-dir": "escapestudios/phpcs/Symfony2",
-    "require": {
+    "name": "escapestudios/Symfony2-coding-standard",
+    "type": "coding-standard",
+    "description": "CodeSniffer ruleset for the Symfony2 coding standard",
+    "keywords": ["Symfony2", "coding standard", "phpcs"],
+    "homepage": "https://github.com/escapestudios/Symfony2-coding-standard",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Joos",
+            "email": "david.joos@escapestudios.com"
+        },
+        {
+            "name": "Community contributors",
+            "homepage": "https://github.com/escapestudios/Symfony2-coding-standard/graphs/contributors"
+        }
+    ],
+    "extra": {
+        "branch-alias": {
+            "dev-master": "2.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "support" : {
+        "source": "https://github.com/escapestudios/Symfony2-coding-standard",
+        "issues": "https://github.com/escapestudios/Symfony2-coding-standard/issues"
+    },
+    "suggest": {
         "squizlabs/php_codesniffer": "~2.0"
     },
-    "minimum-stability": "dev"
+    "target-dir": "escapestudios/Symfony2-coding-standard"
 }
