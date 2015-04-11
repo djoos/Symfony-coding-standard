@@ -27,6 +27,5 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "~2.0"
-    },
-    "target-dir": "escapestudios/Symfony2-coding-standard"
+    }
 }
