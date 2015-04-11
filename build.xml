@@ -3,7 +3,6 @@
     <available property="composer.exists" file="${composer.path}" />
 
     <target name="test" depends="vendor,lint,phpunit,phpcs" />
-    <target name="report" depends="vendor,lint,prepare,phpunit-report,phpcs-report" />
     <target name="travis" depends="lint,phpunit-travis" />
 
     <target name="prepare" depends="clean" description="Prepare for build">
@@ -49,31 +48,8 @@
         </exec>
     </target>
 
-    <target name="phpunit-report" description="Run unit tests with PHPUnit and produce report output">
-        <exec executable="phpunit" failonerror="true" >
-            <arg value="--coverage-html" />
-            <arg value="${basedir}/build/coverage" />
-            <arg value="--coverage-clover" />
-            <arg value="${basedir}/build/logs/clover.xml" />
-            <arg value="--log-junit" />
-            <arg value="${basedir}/build/logs/junit.xml" />
-            <arg value="--filter=Symfony2_*" />
-            <arg path="${basedir}/vendor/squizlabs/php_codesniffer/tests/AllTests.php" />
-        </exec>
-    </target>
-
     <target name="phpcs" description="Find coding standard violations using PHP Code Sniffer">
         <exec executable="phpcs">
-            <arg value="--standard=${phpcs.standard}" />
-            <arg value="--ignore=vendor/*" /> 
-            <arg path="${basedir}" />
-        </exec>
-    </target>
-
-    <target name="phpcs-report" description="Find coding standard violations using PHP Code Sniffer">
-        <exec executable="phpcs" output="/dev/null">
-            <arg value="--report=checkstyle" />
-            <arg value="--report-file=${basedir}/build/logs/checkstyle.xml" />
             <arg value="--standard=${phpcs.standard}" />
             <arg value="--ignore=vendor/*" /> 
             <arg path="${basedir}" />

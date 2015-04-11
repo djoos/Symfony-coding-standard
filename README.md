@@ -12,7 +12,7 @@ Installation
 
 2. Copy, symlink or check out this repository
 
-        git clone git://github.com/escapestudios/Symfony2-coding-standard.git Symfony2
+        git clone git://github.com/escapestudios/Symfony2-coding-standard.git
 
     ---OR---
 
@@ -32,7 +32,7 @@ Installation
 
 3. Add Symfony2 to the PHP_CodeSniffer install path 
 
-        phpcs --config-set installed_paths /path/to/Symfony2
+        phpcs --config-set installed_paths /path/to/Symfony2-coding-standard/Symfony2
 
 4. Done!
 

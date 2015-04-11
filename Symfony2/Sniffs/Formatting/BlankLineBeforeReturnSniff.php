@@ -68,6 +68,8 @@ class Symfony2_Sniffs_Formatting_BlankLineBeforeReturnSniff implements PHP_CodeS
             if ($tokens[$current]['line'] == $previousLine
                 && $tokens[$current]['type'] !== 'T_WHITESPACE'
                 && $tokens[$current]['type'] !== 'T_COMMENT'
+                && $tokens[$current]['type'] !== 'T_DOC_COMMENT_CLOSE_TAG'
+                && $tokens[$current]['type'] !== 'T_DOC_COMMENT_WHITESPACE'
             ) {
                 $prevLineTokens[] = $tokens[$current]['type'];
             }

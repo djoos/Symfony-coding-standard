@@ -1,5 +1,4 @@
 <?php
-
 function validFunctionReturnOne()
 {
     return;
@@ -15,6 +14,20 @@ function validFunctionReturnThree()
 {
     echo "";
 
+    return;
+}
+
+function validFunctionReturnFour()
+{
+    // comment
+    return;
+}
+
+function validFunctionReturnFive()
+{
+    /**
+     * multi-line
+     */
     return;
 }
 
