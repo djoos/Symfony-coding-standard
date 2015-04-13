@@ -11,6 +11,7 @@
  * @version  GIT: master
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
+
 /**
  * Unit test class for the MultiLineArrayComma sniff.
  *
@@ -36,10 +37,10 @@ class Symfony2_Tests_Arrays_MultiLineArrayCommaUnitTest extends AbstractSniffUni
     public function getErrorList()
     {
         return array(
-                10  => 1,
-                22 => 1,
-                );
-    }//end getErrorList()
+            10  => 1,
+            22 => 1
+        );
+    }
 
     /**
      * Returns the lines where warnings should occur.
@@ -47,11 +48,10 @@ class Symfony2_Tests_Arrays_MultiLineArrayCommaUnitTest extends AbstractSniffUni
      * The key of the array should represent the line number and the value
      * should represent the number of errors that should occur on that line.
      *
-     * @return array<int, int>
+     * @return array(int => int)
      */
     public function getWarningList()
     {
         return array();
-    }//end getErrorList()
-}//end class
-?>
+    }
+}
