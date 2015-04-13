@@ -15,7 +15,8 @@
 /**
  * Symfony2_Sniffs_WhiteSpace_MultiLineArrayCommaSniff.
  *
- * Throws warnings if the last item in a multi line array does not have a trailing comma
+ * Throws warnings if the last item in a multi line array does not have a
+ * trailing comma
  *
  * @category PHP
  * @package  PHP_CodeSniffer-Symfony2
@@ -23,7 +24,8 @@
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
-class Symfony2_Sniffs_Arrays_MultiLineArrayCommaSniff implements PHP_CodeSniffer_Sniff
+class Symfony2_Sniffs_Arrays_MultiLineArrayCommaSniff
+    implements PHP_CodeSniffer_Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -43,6 +45,7 @@ class Symfony2_Sniffs_Arrays_MultiLineArrayCommaSniff implements PHP_CodeSniffer
     {
         return array(
                 T_ARRAY,
+                T_OPEN_SHORT_ARRAY,
                );
 
     }//end register()
@@ -60,12 +63,17 @@ class Symfony2_Sniffs_Arrays_MultiLineArrayCommaSniff implements PHP_CodeSniffer
     {
         $tokens = $phpcsFile->getTokens();
         $open   = $tokens[$stackPtr];
-        $close  = $tokens[$open['parenthesis_closer']];
 
-        if ($open['line'] <> $close['line']) {
-            $lastComma = $phpcsFile->findPrevious(T_COMMA, $open['parenthesis_closer']);
+        if ($open['code'] === T_ARRAY) {
+            $closePtr = $open['parenthesis_closer'];
+        } else {
+            $closePtr = $open['bracket_closer'];
+        }
 
-            while ($lastComma < $open['parenthesis_closer'] -1) {
+        if ($open['line'] <> $tokens[$closePtr]['line']) {
+            $lastComma = $phpcsFile->findPrevious(T_COMMA, $closePtr);
+
+            while ($lastComma < $closePtr -1) {
                 $lastComma++;
 
                 if ($tokens[$lastComma]['code'] !== T_WHITESPACE) {
