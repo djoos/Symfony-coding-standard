@@ -37,8 +37,8 @@ class Symfony2_Tests_Arrays_MultiLineArrayCommaUnitTest extends AbstractSniffUni
     public function getErrorList()
     {
         return array(
-            10  => 1,
-            22 => 1
+            11  => 1,
+            24 => 1
         );
     }
 
