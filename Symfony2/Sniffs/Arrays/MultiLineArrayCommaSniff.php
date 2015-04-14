@@ -77,11 +77,17 @@ class Symfony2_Sniffs_Arrays_MultiLineArrayCommaSniff
                 $lastComma++;
 
                 if ($tokens[$lastComma]['code'] !== T_WHITESPACE) {
-                    $phpcsFile->addError(
+                    $fix = $phpcsFile->addFixableError(
                         'Add a comma after each item in a multi-line array',
                         $stackPtr,
                         'Invalid'
                     );
+
+                    if ($fix) {
+                        $phpcsFile->fixer->beginChangeset();
+                        $phpcsFile->fixer->replaceToken($lastComma, $phpcsFile->fixer->getTokenContent($lastComma) . ',');
+                        $phpcsFile->fixer->endChangeset();
+                    }
                     break;
                 }
             }
