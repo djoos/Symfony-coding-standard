@@ -64,11 +64,15 @@ class Symfony2_Sniffs_WhiteSpace_CommaSpacingSniff implements PHP_CodeSniffer_Sn
         $line   = $tokens[$stackPtr]['line'];
 
         if ($tokens[$stackPtr + 1]['line'] === $line && $tokens[$stackPtr + 1]['code'] !== T_WHITESPACE) {
-            $phpcsFile->addError(
+            $fix = $phpcsFile->addFixableError(
                 'Add a single space after each comma delimiter',
                 $stackPtr,
                 'Invalid'
             );
+
+            if ($fix) {
+				$phpcsFile->fixer->addContent($stackPtr, " ");
+			}
         }
 
     }//end process()
