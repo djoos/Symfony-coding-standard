@@ -60,11 +60,21 @@ class Symfony2_Sniffs_WhiteSpace_BinaryOperatorSpacingSniff
         $tokens = $phpcsFile->getTokens();
 
         if ($tokens[$stackPtr -1]['code'] !== T_WHITESPACE || $tokens[$stackPtr +1]['code'] !== T_WHITESPACE) {
-            $phpcsFile->addError(
+            $fix = $phpcsFile->addFixableError(
                 'Add a single space around binary operators',
                 $stackPtr,
-                'Invalid'
+                "Invalid"
             );
+
+            if ($fix === true) {
+                if ($tokens[$stackPtr -1]['code'] !== T_WHITESPACE) {
+                    $phpcsFile->fixer->addContentBefore($stackPtr, " ");
+                }
+
+                if ($tokens[$stackPtr +1]['code'] !== T_WHITESPACE) {
+                    $phpcsFile->fixer->addContent($stackPtr, " ");
+                }
+            }
         }
     }//end process()
 
