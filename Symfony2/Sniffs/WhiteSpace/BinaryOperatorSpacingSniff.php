@@ -61,9 +61,9 @@ class Symfony2_Sniffs_WhiteSpace_BinaryOperatorSpacingSniff
 
         if ($tokens[$stackPtr -1]['code'] !== T_WHITESPACE || $tokens[$stackPtr +1]['code'] !== T_WHITESPACE) {
             $fix = $phpcsFile->addFixableError(
-              'Add a single space around binary operators',
-              $stackPtr,
-              "Invalid"
+                'Add a single space around binary operators',
+                $stackPtr,
+                "Invalid"
             );
 
             if ($fix === true) {
