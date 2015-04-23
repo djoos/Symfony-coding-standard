@@ -71,8 +71,8 @@ class Symfony2_Sniffs_WhiteSpace_CommaSpacingSniff implements PHP_CodeSniffer_Sn
             );
 
             if ($fix) {
-				$phpcsFile->fixer->addContent($stackPtr, " ");
-			}
+		$phpcsFile->fixer->addContent($stackPtr, " ");
+            }
         }
 
     }//end process()
