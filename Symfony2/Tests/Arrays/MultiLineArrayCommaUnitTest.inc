@@ -25,3 +25,49 @@ $arr = [
         'foo'
         'bar'
 ];
+
+// Classic array syntax with comments
+$arr = array('foo', 'bar' /* baz */);
+
+$arr = array(
+        'foo'
+        'bar', //baz
+);
+
+$arr = array(
+        'foo'
+        'bar' //baz
+);
+
+$arr = array(
+        'foo'
+        'bar', /* baz */
+);
+
+$arr = array(
+        'foo'
+        'bar' /* baz */
+);
+
+// Short array syntax with comments
+$arr = ['foo', 'bar' /* baz */];
+
+$arr = [
+        'foo'
+        'bar', //baz
+];
+
+$arr = [
+        'foo'
+        'bar' //baz
+];
+
+$arr = [
+        'foo'
+        'bar', /* baz */
+];
+
+$arr = [
+        'foo'
+        'bar' /* baz */
+];
