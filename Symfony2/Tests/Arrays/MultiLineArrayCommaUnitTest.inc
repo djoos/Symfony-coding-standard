@@ -13,6 +13,11 @@ $arr = array(
         'bar'
 );
 
+$arr = array(
+        'foo',
+        'bar', // Comment at the end
+);
+
 // Short array syntax
 $arr = ['foo', 'bar'];
 
@@ -24,4 +29,9 @@ $arr = [
 $arr = [
         'foo'
         'bar'
+];
+
+$arr = [
+        'foo',
+        'bar', // Comment at the end
 ];
