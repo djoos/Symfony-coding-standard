@@ -76,7 +76,9 @@ class Symfony2_Sniffs_Arrays_MultiLineArrayCommaSniff
             while ($lastComma < $closePtr -1) {
                 $lastComma++;
 
-                if ($tokens[$lastComma]['code'] !== T_WHITESPACE) {
+                if ($tokens[$lastComma]['code'] !== T_WHITESPACE
+                    && $tokens[$lastComma]['code'] !== T_COMMENT
+                ) {
                     $phpcsFile->addError(
                         'Add a comma after each item in a multi-line array',
                         $stackPtr,

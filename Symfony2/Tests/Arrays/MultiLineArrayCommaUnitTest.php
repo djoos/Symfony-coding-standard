@@ -38,7 +38,11 @@ class Symfony2_Tests_Arrays_MultiLineArrayCommaUnitTest extends AbstractSniffUni
     {
         return array(
             11  => 1,
-            24 => 1
+            24 => 1,
+            37 => 1,
+            47 => 1,
+            60 => 1,
+            70 => 1,
         );
     }
 
