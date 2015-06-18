@@ -64,6 +64,7 @@ class Symfony2_Sniffs_Objects_ObjectInstantiationSniff implements PHP_CodeSniffe
         $allowed = array(
             T_STRING,
             T_NS_SEPARATOR,
+            T_VARIABLE,
         );
 
         $object = $stackPtr;
@@ -88,4 +89,3 @@ class Symfony2_Sniffs_Objects_ObjectInstantiationSniff implements PHP_CodeSniffe
     }//end process()
 
 }//end class
-
