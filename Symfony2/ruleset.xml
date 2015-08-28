@@ -58,6 +58,9 @@
 
         <!-- do not check line length -->
         <exclude name="Generic.Files.LineLength"/>
+
+        <!-- covered by Squiz FunctionDeclarationSniff -->
+        <exclude name="Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine"/>
     </rule>
 
     <!-- Don't enforce Zend's private member underscores -->
