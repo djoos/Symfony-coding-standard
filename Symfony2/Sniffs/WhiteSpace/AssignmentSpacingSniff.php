@@ -42,7 +42,7 @@ class Symfony2_Sniffs_WhiteSpace_AssignmentSpacingSniff implements PHP_CodeSniff
      */
     public function register()
     {
-        return PHP_CodeSniffer_Tokens::$assignmentTokens ;
+        return PHP_CodeSniffer_Tokens::$assignmentTokens;
 
     }//end register()
 
