@@ -86,16 +86,21 @@ class Symfony2_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commen
 
         // Only check for a return comment if a non-void return statement exists
         if (isset($tokens[$stackPtr]['scope_opener'])) {
-            $start = $tokens[$stackPtr]['scope_opener'];
+            // Start inside the function
+            $start = $phpcsFile->findNext(T_OPEN_CURLY_BRACKET, $stackPtr, $tokens[$stackPtr]['scope_closer']);
+            for ($i = $start; $i < $tokens[$stackPtr]['scope_closer']; ++$i) {
+                // Skip closures
+                if ($tokens[$i]['code'] === T_CLOSURE) {
+                    $i = $tokens[$i]['scope_closer'];
+                    continue;
+                }
 
-            // iterate over all return statements of this function,
-            // run the check on the first which is not only 'return;'
-            while ($returnToken = $phpcsFile->findNext(T_RETURN, $start, $tokens[$stackPtr]['scope_closer'])) {
-                if ($this->isMatchingReturn($tokens, $returnToken)) {
+                // Found a return not in a closure statement
+                // Run the check on the first which is not only 'return;'
+                if ($tokens[$i]['code'] === T_RETURN && $this->isMatchingReturn($tokens, $i)) {
                     parent::processReturn($phpcsFile, $stackPtr, $commentStart);
                     break;
                 }
-                $start = $returnToken + 1;
             }
         }
 
