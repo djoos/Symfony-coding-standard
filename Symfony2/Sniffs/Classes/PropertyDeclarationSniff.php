@@ -60,7 +60,11 @@ class Symfony2_Sniffs_Classes_PropertyDeclarationSniff implements PHP_CodeSniffe
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $scope = $phpcsFile->findNext(T_FUNCTION, $stackPtr, $tokens[$stackPtr]['scope_closer']);
+        $scope = $phpcsFile->findNext(
+            T_FUNCTION,
+            $stackPtr,
+            isset($tokens[$stackPtr]['scope_closer']) ? $tokens[$stackPtr]['scope_closer'] : null
+        );
 
         $wantedTokens = array(
             T_PUBLIC,
