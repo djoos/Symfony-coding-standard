@@ -73,7 +73,11 @@ class Symfony2_Sniffs_Classes_PropertyDeclarationSniff implements PHP_CodeSniffe
         );
 
         while ($scope) {
-            $scope = $phpcsFile->findNext($wantedTokens, $scope + 1, $tokens[$stackPtr]['scope_closer']);
+            $scope = $phpcsFile->findNext(
+                $wantedTokens,
+                $scope + 1,
+                isset($tokens[$stackPtr]['scope_closer']) ? $tokens[$stackPtr]['scope_closer'] : null
+            );
 
             if ($scope && $tokens[$scope + 2]['code'] === T_VARIABLE) {
                 $phpcsFile->addError(
