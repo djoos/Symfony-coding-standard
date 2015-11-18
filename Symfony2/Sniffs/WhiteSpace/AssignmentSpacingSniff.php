@@ -16,7 +16,7 @@
 /**
  * Symfony2_Sniffs_WhiteSpace_AssignmentSpacingSniff.
  *
- * Throws warnings if an assignement operator isn't surrounded with whitespace.
+ * Throws warnings if an assignment operator isn't surrounded with whitespace.
  *
  * @category PHP
  * @package  PHP_CodeSniffer-Symfony2
@@ -61,7 +61,7 @@ class Symfony2_Sniffs_WhiteSpace_AssignmentSpacingSniff implements PHP_CodeSniff
 
         if ($tokens[$stackPtr -1]['code'] !== T_WHITESPACE || $tokens[$stackPtr +1]['code'] !== T_WHITESPACE) {
             $phpcsFile->addError(
-                'Add a single space around assignement operators',
+                'Add a single space around assignment operators',
                 $stackPtr,
                 'Invalid'
             );
