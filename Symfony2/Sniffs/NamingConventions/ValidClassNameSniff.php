@@ -76,7 +76,7 @@ class Symfony2_Sniffs_NamingConventions_ValidClassNameSniff implements PHP_CodeS
                     $phpcsFile->addError(
                         'Interface name is not suffixed with "Interface"',
                         $stackPtr,
-                        'Invalid'
+                        'InvalidInterfaceName'
                     );
                 }
                 break;
@@ -92,7 +92,7 @@ class Symfony2_Sniffs_NamingConventions_ValidClassNameSniff implements PHP_CodeS
                     $phpcsFile->addError(
                         'Trait name is not suffixed with "Trait"',
                         $stackPtr,
-                        'Invalid'
+                        'InvalidTraitName'
                     );
                 }
                 break;
@@ -112,7 +112,7 @@ class Symfony2_Sniffs_NamingConventions_ValidClassNameSniff implements PHP_CodeS
                         $phpcsFile->addError(
                             'Exception name is not suffixed with "Exception"',
                             $stackPtr,
-                            'Invalid'
+                            'InvalidExceptionName'
                         );
                     }
                 }
@@ -131,7 +131,7 @@ class Symfony2_Sniffs_NamingConventions_ValidClassNameSniff implements PHP_CodeS
                     $phpcsFile->addError(
                         'Abstract class name is not prefixed with "Abstract"',
                         $stackPtr,
-                        'Invalid'
+                        'InvalidAbstractName'
                     );
                 }
                 break;
