@@ -21,3 +21,6 @@ new \Foo\Bar($this->foo);
 new $foo();
 new $foo(true);
 new $foo($this->foo);
+new static();
+new static(true);
+new static($this->foo);
