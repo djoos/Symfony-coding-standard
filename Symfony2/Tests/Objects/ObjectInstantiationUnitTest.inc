@@ -6,6 +6,8 @@ new Foo\Bar;
 new \Foo\Bar;
 new $foo;
 new Foo ();
+new static;
+new self;
 
 //good
 new Foo();
