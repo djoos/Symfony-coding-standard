@@ -43,8 +43,8 @@ class Symfony2_Tests_Objects_ObjectInstantiationUnitTest extends AbstractSniffUn
             6  => 1,
             7  => 1,
             8  => 1,
-        	9  => 1,
-        	10 => 1,
+            9  => 1,
+            10 => 1,
         );
     }
 
