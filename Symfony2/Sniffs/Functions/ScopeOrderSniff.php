@@ -76,7 +76,11 @@ class Symfony2_Sniffs_Functions_ScopeOrderSniff implements PHP_CodeSniffer_Sniff
         );
 
         while ($function) {
-            $function = $phpcsFile->findNext(T_FUNCTION, $function + 1, $tokens[$stackPtr]['scope_closer']);
+            $function = $phpcsFile->findNext(
+                T_FUNCTION,
+                $function + 1,
+                isset($tokens[$stackPtr]['scope_closer']) ? $tokens[$stackPtr]['scope_closer'] : null
+            );
 
             if (isset($tokens[$function]['parenthesis_opener'])) {
                 $scope = $phpcsFile->findPrevious($scopes, $function -1, $stackPtr);
