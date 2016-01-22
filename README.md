@@ -38,7 +38,7 @@ This standard can be installed with the [Composer](https://getcomposer.org/) dep
 
 3. Add the coding standard to the PHP_CodeSniffer install path
 
-        phpcs --config-set installed_paths /path/to/Symfony2-coding-standards
+        phpcs --config-set installed_paths /path/to/Symfony2-coding-standard
 
    Or copy/symlink this repository's "Symfony2"-folder inside the phpcs `Standards` directory
 
