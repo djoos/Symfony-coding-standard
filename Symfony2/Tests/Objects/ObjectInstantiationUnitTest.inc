@@ -6,6 +6,8 @@ new Foo\Bar;
 new \Foo\Bar;
 new $foo;
 new Foo ();
+new static;
+new self;
 
 //good
 new Foo();
@@ -21,3 +23,6 @@ new \Foo\Bar($this->foo);
 new $foo();
 new $foo(true);
 new $foo($this->foo);
+new static();
+new static(true);
+new static($this->foo);

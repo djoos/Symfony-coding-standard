@@ -65,6 +65,7 @@ class Symfony2_Sniffs_Objects_ObjectInstantiationSniff implements PHP_CodeSniffe
             T_STRING,
             T_NS_SEPARATOR,
             T_VARIABLE,
+            T_STATIC,
         );
 
         $object = $stackPtr;
