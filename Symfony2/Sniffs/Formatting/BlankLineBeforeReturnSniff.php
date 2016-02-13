@@ -82,10 +82,21 @@ class Symfony2_Sniffs_Formatting_BlankLineBeforeReturnSniff implements PHP_CodeS
         ) {
             return;
         } else if (count($prevLineTokens) > 0) {
-            $phpcsFile->addError(
+            $fix = $phpcsFile->addFixableError(
                 'Missing blank line before return statement',
-                $stackPtr
+                $stackPtr,
+                'MissedBlankLineBeforeRetrun'
             );
+
+            if ($fix === true) {
+                $phpcsFile->fixer->beginChangeset();
+                $i = 1;
+                while($tokens[$stackPtr-$i]['type'] == "T_WHITESPACE") {
+                    $i++;
+                }
+                $phpcsFile->fixer->addNewLine($stackPtr-$i);
+                $phpcsFile->fixer->endChangeset();
+            }
         }
 
         return;
