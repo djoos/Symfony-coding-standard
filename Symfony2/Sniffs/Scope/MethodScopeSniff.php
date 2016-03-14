@@ -1,36 +1,36 @@
 <?php
+
 /**
- * Verifies that class members have scope modifiers.
+ * This file is part of the Symfony2-coding-standard (phpcs standard)
  *
  * PHP version 5
  *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   CVS: $Id: MethodScopeSniff.php 301632 2010-07-28 01:57:56Z squiz $
- * @link      http://pear.php.net/package/PHP_CodeSniffer
+ * @category PHP
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
+ * @license  http://spdx.org/licenses/MIT MIT License
+ * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
 if (class_exists('PHP_CodeSniffer_Standards_AbstractScopeSniff', true) === false) {
-    throw new PHP_CodeSniffer_Exception('Class PHP_CodeSniffer_Standards_AbstractScopeSniff not found');
+    throw new PHP_CodeSniffer_Exception(
+        'Class PHP_CodeSniffer_Standards_AbstractScopeSniff not found'
+    );
 }
 
 /**
  * Verifies that class members have scope modifiers.
  *
- * @category  PHP
- * @package   PHP_CodeSniffer
- * @author    Greg Sherwood <gsherwood@squiz.net>
- * @author    Marc McIntyre <mmcintyre@squiz.net>
- * @copyright 2006 Squiz Pty Ltd (ABN 77 084 670 600)
- * @license   http://matrix.squiz.net/developer/tools/php_cs/licence BSD Licence
- * @version   Release: 1.3.0
- * @link      http://pear.php.net/package/PHP_CodeSniffer
+ * PHP version 5
+ *
+ * @category PHP
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
+ * @license  http://spdx.org/licenses/MIT MIT License
+ * @link     http://pear.php.net/package/PHP_CodeSniffer
  */
-class Symfony2_Sniffs_Scope_MethodScopeSniff extends PHP_CodeSniffer_Standards_AbstractScopeSniff
+class Symfony2_Sniffs_Scope_MethodScopeSniff
+    extends PHP_CodeSniffer_Standards_AbstractScopeSniff
 {
     /**
      * Constructs a Symfony2_Sniffs_Scope_MethodScopeSniff.
@@ -39,7 +39,7 @@ class Symfony2_Sniffs_Scope_MethodScopeSniff extends PHP_CodeSniffer_Standards_A
     {
         parent::__construct(array(T_CLASS), array(T_FUNCTION));
 
-    }//end __construct()
+    }
 
     /**
      * Processes the function tokens within the class.
@@ -50,8 +50,11 @@ class Symfony2_Sniffs_Scope_MethodScopeSniff extends PHP_CodeSniffer_Standards_A
      *
      * @return void
      */
-    protected function processTokenWithinScope(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $currScope)
-    {
+    protected function processTokenWithinScope(
+        PHP_CodeSniffer_File $phpcsFile,
+        $stackPtr,
+        $currScope
+    ) {
         $tokens = $phpcsFile->getTokens();
 
         $methodName = $phpcsFile->getDeclarationName($stackPtr);
@@ -60,12 +63,18 @@ class Symfony2_Sniffs_Scope_MethodScopeSniff extends PHP_CodeSniffer_Standards_A
             return;
         }
 
-        $modifier = $phpcsFile->findPrevious(PHP_CodeSniffer_Tokens::$scopeModifiers, $stackPtr);
-        if (($modifier === false) || ($tokens[$modifier]['line'] !== $tokens[$stackPtr]['line'])) {
+        $modifier = $phpcsFile->findPrevious(
+            PHP_CodeSniffer_Tokens::$scopeModifiers,
+            $stackPtr
+        );
+
+        if (($modifier === false)
+            || ($tokens[$modifier]['line'] !== $tokens[$stackPtr]['line'])
+        ) {
             $error = 'No scope modifier specified for function "%s"';
             $data  = array($methodName);
             $phpcsFile->addError($error, $stackPtr, 'Missing', $data);
         }
 
-    }//end processTokenWithinScope()
-}//end class
+    }
+}

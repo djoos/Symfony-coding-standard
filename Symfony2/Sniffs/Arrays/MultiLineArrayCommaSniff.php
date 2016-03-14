@@ -48,7 +48,7 @@ class Symfony2_Sniffs_Arrays_MultiLineArrayCommaSniff
                 T_OPEN_SHORT_ARRAY,
                );
 
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -89,7 +89,6 @@ class Symfony2_Sniffs_Arrays_MultiLineArrayCommaSniff
             }
         }
 
-    }//end process()
+    }
 
-}//end class
-
+}

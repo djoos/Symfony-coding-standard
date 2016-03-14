@@ -6,10 +6,9 @@
  * PHP version 5
  *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   wicliff wolda <dev@bloody-wicked.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
- * @version  GIT: master
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
@@ -18,13 +17,16 @@
  *
  * Throws a warning if an object isn't instantiated using parenthesis.
  *
+ * PHP version 5
+ *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   wicliff wolda <dev@bloody-wicked.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
-class Symfony2_Sniffs_Objects_ObjectInstantiationSniff implements PHP_CodeSniffer_Sniff
+class Symfony2_Sniffs_Objects_ObjectInstantiationSniff
+    implements PHP_CodeSniffer_Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -46,8 +48,7 @@ class Symfony2_Sniffs_Objects_ObjectInstantiationSniff implements PHP_CodeSniffe
         return array(
                 T_NEW,
                );
-
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -74,7 +75,9 @@ class Symfony2_Sniffs_Objects_ObjectInstantiationSniff implements PHP_CodeSniffe
         while ($object && $tokens[$object]['line'] === $line) {
             $object = $phpcsFile->findNext($allowed, $object + 1);
 
-            if ($tokens[$object]['line'] === $line && !in_array($tokens[$object + 1]['code'], $allowed)) {
+            if ($tokens[$object]['line'] === $line
+                && !in_array($tokens[$object + 1]['code'], $allowed)
+            ) {
                 if ($tokens[$object + 1]['code'] !== T_OPEN_PARENTHESIS) {
                     $phpcsFile->addError(
                         'Use parentheses when instantiating classes',
@@ -86,7 +89,5 @@ class Symfony2_Sniffs_Objects_ObjectInstantiationSniff implements PHP_CodeSniffe
                 break;
             }
         }
-
-    }//end process()
-
-}//end class
+    }
+}

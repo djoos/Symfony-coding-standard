@@ -1,14 +1,14 @@
 <?php
+
 /**
  * This file is part of the Symfony2-coding-standard (phpcs standard)
  *
  * PHP version 5
  *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   Symfony2-phpcs-authors <Symfony2-coding-standard@escapestudios.github.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
- * @version  GIT: master
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
@@ -17,15 +17,17 @@
  *
  * Throws warnings if a file contains trailing whitespace.
  *
+ * PHP version 5
+ *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   Justin Hileman <justin@shopescapestudios.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
-class Symfony2_Sniffs_WhiteSpace_DiscourageFitzinatorSniff implements PHP_CodeSniffer_Sniff
+class Symfony2_Sniffs_WhiteSpace_DiscourageFitzinatorSniff
+    implements PHP_CodeSniffer_Sniff
 {
-
     /**
      * A list of tokenizers this sniff supports.
      *
@@ -49,7 +51,6 @@ class Symfony2_Sniffs_WhiteSpace_DiscourageFitzinatorSniff implements PHP_CodeSn
 
     }
 
-
     /**
      * Processes this test, when one of its tokens is encountered.
      *
@@ -65,15 +66,17 @@ class Symfony2_Sniffs_WhiteSpace_DiscourageFitzinatorSniff implements PHP_CodeSn
 
         // Make sure this is trailing whitespace.
         $line = $tokens[$stackPtr]['line'];
-        if (($stackPtr < count($tokens) - 1) && $tokens[($stackPtr + 1)]['line'] === $line) {
+        if (($stackPtr < count($tokens) - 1)
+            && $tokens[($stackPtr + 1)]['line'] === $line
+        ) {
             return;
         }
 
-        if (strpos($tokens[$stackPtr]['content'], "\n") > 0 || strpos($tokens[$stackPtr]['content'], "\r") > 0) {
+        if (strpos($tokens[$stackPtr]['content'], "\n") > 0
+            || strpos($tokens[$stackPtr]['content'], "\r") > 0
+        ) {
             $warning = 'Please trim any trailing whitespace';
             $phpcsFile->addWarning($warning, $stackPtr);
         }
-
     }
-
 }
