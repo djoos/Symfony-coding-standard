@@ -6,10 +6,9 @@
  * PHP version 5
  *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   wicliff wolda <dev@bloody-wicked.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
- * @version  GIT: master
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
@@ -18,13 +17,16 @@
  *
  * Throws warnings if comma isn't followed by a whitespace.
  *
+ * PHP version 5
+ *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   wicliff wolda <dev@bloody-wicked.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
-class Symfony2_Sniffs_WhiteSpace_CommaSpacingSniff implements PHP_CodeSniffer_Sniff
+class Symfony2_Sniffs_WhiteSpace_CommaSpacingSniff
+    implements PHP_CodeSniffer_Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -34,7 +36,6 @@ class Symfony2_Sniffs_WhiteSpace_CommaSpacingSniff implements PHP_CodeSniffer_Sn
     public $supportedTokenizers = array(
         'PHP',
     );
-
 
     /**
      * Returns an array of tokens this test wants to listen for.
@@ -47,7 +48,7 @@ class Symfony2_Sniffs_WhiteSpace_CommaSpacingSniff implements PHP_CodeSniffer_Sn
             T_COMMA,
         );
 
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -63,7 +64,9 @@ class Symfony2_Sniffs_WhiteSpace_CommaSpacingSniff implements PHP_CodeSniffer_Sn
         $tokens = $phpcsFile->getTokens();
         $line   = $tokens[$stackPtr]['line'];
 
-        if ($tokens[$stackPtr + 1]['line'] === $line && $tokens[$stackPtr + 1]['code'] !== T_WHITESPACE) {
+        if ($tokens[$stackPtr + 1]['line'] === $line
+            && $tokens[$stackPtr + 1]['code'] !== T_WHITESPACE
+        ) {
             $phpcsFile->addError(
                 'Add a single space after each comma delimiter',
                 $stackPtr,
@@ -71,7 +74,5 @@ class Symfony2_Sniffs_WhiteSpace_CommaSpacingSniff implements PHP_CodeSniffer_Sn
             );
         }
 
-    }//end process()
-
-}//end class
-
+    }
+}

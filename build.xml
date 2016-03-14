@@ -1,9 +1,10 @@
 <project name="Symfony2-coding-standard" default="test">
     <property file="build.properties" />
     <available property="composer.exists" file="${composer.path}" />
+    <available property="symlink.exists" file="${phpcs.symlink.path}" />
 
     <target name="test" depends="vendor,lint,phpunit,phpcs" />
-    <target name="travis" depends="lint,phpunit-travis" />
+    <target name="travis" depends="vendor,lint,phpunit" />
 
     <target name="prepare" depends="clean" description="Prepare for build">
         <mkdir dir="${basedir}/build/coverage" />
@@ -29,28 +30,26 @@
             <arg value="-l" />
             <fileset dir="${basedir}">
                 <include name="**/*.php" />
-                <exclude name="vendor/" />
+                <exclude name="vendor/**" />
             </fileset>
         </apply>
     </target>
 
-    <target name="phpunit-travis" description="Run unit tests with PHPUnit on Travis CI">
-        <exec executable="phpunit" failonerror="true" >
-            <arg value="--filter=Symfony2_*" />
-            <arg value="/tmp/phpcs/tests/AllTests.php" />
-        </exec>
+    <target name="symlink-this-coding-standard" description="Symlink this coding standard" unless="symlink.exists">
+        <symlink link="${basedir}/${phpcs.symlink.path}" resource="${basedir}/Symfony2"/>
     </target>
 
-    <target name="phpunit" description="Run unit tests with PHPUnit">
+    <target name="phpunit" depends="symlink-this-coding-standard" description="Run unit tests with PHPUnit">
         <exec executable="phpunit" failonerror="true" >
             <arg value="--filter=Symfony2_*" />
-            <arg value="${basedir}/vendor/squizlabs/php_codesniffer/tests/AllTests.php" />
+            <arg value="${phpcs.dir}/tests/AllTests.php" />
         </exec>
     </target>
 
     <target name="phpcs" description="Find coding standard violations using PHP Code Sniffer">
-        <exec executable="phpcs">
+        <exec executable="phpcs" failonerror="true">
             <arg value="--standard=${phpcs.standard}" />
+            <arg value="--extensions=php" />
             <arg value="--ignore=vendor/*" /> 
             <arg path="${basedir}" />
         </exec>

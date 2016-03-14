@@ -1,14 +1,14 @@
 <?php
+
 /**
  * This file is part of the Symfony2-coding-standard (phpcs standard)
  *
  * PHP version 5
  *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   Symfony2-phpcs-authors <Symfony2-coding-standard@escapestudios.github.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
- * @version  GIT: master
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
@@ -22,18 +22,22 @@ if (class_exists('PEAR_Sniffs_Commenting_FunctionCommentSniff', true) === false)
  *
  * Verifies that :
  * <ul>
- *  <li>There is a &#64;return tag if a return statement exists inside the method</li>
+ *   <li>
+ *     There is a &#64;return tag if a return statement exists inside the method
+ *   </li>
  * </ul>
  *
+ * PHP version 5
+ *
  * @category PHP
- * @package  PHP_CodeSniffer
- * @author   Felix Brandt <mail@felixbrandt.de>
- * @license  http://spdx.org/licenses/BSD-3-Clause BSD 3-clause "New" or "Revised" License
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
+ * @license  http://spdx.org/licenses/MIT MIT License
  * @link     http://pear.php.net/package/PHP_CodeSniffer
  */
-class Symfony2_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commenting_FunctionCommentSniff
+class Symfony2_Sniffs_Commenting_FunctionCommentSniff
+    extends PEAR_Sniffs_Commenting_FunctionCommentSniff
 {
-
     /**
      * Processes this test, when one of its tokens is encountered.
      *
@@ -45,7 +49,16 @@ class Symfony2_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commen
      */
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
-        if (false === $commentEnd = $phpcsFile->findPrevious(array(T_COMMENT, T_DOC_COMMENT, T_CLASS, T_FUNCTION, T_OPEN_TAG), ($stackPtr - 1))) {
+        if (false === $commentEnd = $phpcsFile->findPrevious(
+            array(
+                T_COMMENT,
+                T_DOC_COMMENT,
+                T_CLASS,
+                T_FUNCTION,
+                T_OPEN_TAG
+            ),
+            ($stackPtr - 1)
+        )) {
             return;
         }
 
@@ -71,12 +84,16 @@ class Symfony2_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commen
      * @param PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                  $stackPtr     The position of the current token
      *                                           in the stack passed in $tokens.
-     * @param int                  $commentStart The position in the stack where the comment started.
+     * @param int                  $commentStart The position in the stack
+     *                                           where the comment started.
      *
      * @return void
      */
-    protected function processReturn(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $commentStart)
-    {
+    protected function processReturn(
+        PHP_CodeSniffer_File $phpcsFile,
+        $stackPtr,
+        $commentStart
+    ) {
 
         if ($this->isInheritDoc($phpcsFile, $stackPtr)) {
             return;
@@ -87,7 +104,11 @@ class Symfony2_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commen
         // Only check for a return comment if a non-void return statement exists
         if (isset($tokens[$stackPtr]['scope_opener'])) {
             // Start inside the function
-            $start = $phpcsFile->findNext(T_OPEN_CURLY_BRACKET, $stackPtr, $tokens[$stackPtr]['scope_closer']);
+            $start = $phpcsFile->findNext(
+                T_OPEN_CURLY_BRACKET,
+                $stackPtr,
+                $tokens[$stackPtr]['scope_closer']
+            );
             for ($i = $start; $i < $tokens[$stackPtr]['scope_closer']; ++$i) {
                 // Skip closures
                 if ($tokens[$i]['code'] === T_CLOSURE) {
@@ -97,14 +118,16 @@ class Symfony2_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commen
 
                 // Found a return not in a closure statement
                 // Run the check on the first which is not only 'return;'
-                if ($tokens[$i]['code'] === T_RETURN && $this->isMatchingReturn($tokens, $i)) {
+                if ($tokens[$i]['code'] === T_RETURN
+                    && $this->isMatchingReturn($tokens, $i)
+                ) {
                     parent::processReturn($phpcsFile, $stackPtr, $commentStart);
                     break;
                 }
             }
         }
 
-    } /* end processReturn() */
+    }
 
     /**
      * Is the comment an inheritdoc?
@@ -125,7 +148,7 @@ class Symfony2_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commen
         $content = $phpcsFile->getTokensAsString($start, ($end - $start));
 
         return preg_match('#{@inheritdoc}#i', $content) === 1;
-    } // end isInheritDoc()
+    }
 
     /**
      * Process the function parameter comments.
@@ -133,12 +156,16 @@ class Symfony2_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commen
      * @param PHP_CodeSniffer_File $phpcsFile    The file being scanned.
      * @param int                  $stackPtr     The position of the current token
      *                                           in the stack passed in $tokens.
-     * @param int                  $commentStart The position in the stack where the comment started.
+     * @param int                  $commentStart The position in the stack
+     *                                           where the comment started.
      *
      * @return void
      */
-    protected function processParams(PHP_CodeSniffer_File $phpcsFile, $stackPtr, $commentStart)
-    {
+    protected function processParams(
+        PHP_CodeSniffer_File $phpcsFile,
+        $stackPtr,
+        $commentStart
+    ) {
         $tokens = $phpcsFile->getTokens();
 
         if ($this->isInheritDoc($phpcsFile, $stackPtr)) {
@@ -146,7 +173,7 @@ class Symfony2_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commen
         }
 
         parent::processParams($phpcsFile, $stackPtr, $commentStart);
-    } // end processParams()
+    }
 
     /**
      * Is the return statement matching?
@@ -164,5 +191,4 @@ class Symfony2_Sniffs_Commenting_FunctionCommentSniff extends PEAR_Sniffs_Commen
 
         return $tokens[$returnPos]['code'] !== T_SEMICOLON;
     }
-
-}//end class
+}

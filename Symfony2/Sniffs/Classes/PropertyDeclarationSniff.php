@@ -6,10 +6,9 @@
  * PHP version 5
  *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   wicliff wolda <dev@bloody-wicked.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
- * @version  GIT: master
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
@@ -18,13 +17,16 @@
  *
  * Throws warnings if properties are declared after methods
  *
+* PHP version 5
+ *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   wicliff wolda <dev@bloody-wicked.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
-class Symfony2_Sniffs_Classes_PropertyDeclarationSniff implements PHP_CodeSniffer_Sniff
+class Symfony2_Sniffs_Classes_PropertyDeclarationSniff
+    implements PHP_CodeSniffer_Sniff
 {
 
     /**
@@ -46,7 +48,7 @@ class Symfony2_Sniffs_Classes_PropertyDeclarationSniff implements PHP_CodeSniffe
         return array(
             T_CLASS,
         );
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -60,10 +62,16 @@ class Symfony2_Sniffs_Classes_PropertyDeclarationSniff implements PHP_CodeSniffe
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
+
+        $end = null;
+        if (isset($tokens[$stackPtr]['scope_closer'])) {
+            $end = $tokens[$stackPtr]['scope_closer'];
+        }
+
         $scope = $phpcsFile->findNext(
             T_FUNCTION,
             $stackPtr,
-            isset($tokens[$stackPtr]['scope_closer']) ? $tokens[$stackPtr]['scope_closer'] : null
+            $end
         );
 
         $wantedTokens = array(
@@ -76,7 +84,7 @@ class Symfony2_Sniffs_Classes_PropertyDeclarationSniff implements PHP_CodeSniffe
             $scope = $phpcsFile->findNext(
                 $wantedTokens,
                 $scope + 1,
-                isset($tokens[$stackPtr]['scope_closer']) ? $tokens[$stackPtr]['scope_closer'] : null
+                $end
             );
 
             if ($scope && $tokens[$scope + 2]['code'] === T_VARIABLE) {
@@ -87,6 +95,6 @@ class Symfony2_Sniffs_Classes_PropertyDeclarationSniff implements PHP_CodeSniffe
                 );
             }
         }
-    }//end process()
+    }
 
-}//end class
+}

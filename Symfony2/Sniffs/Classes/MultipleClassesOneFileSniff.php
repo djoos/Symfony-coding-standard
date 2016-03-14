@@ -6,27 +6,27 @@
  * PHP version 5
  *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   Symfony2-phpcs-authors <Symfony2-coding-standard@escapestudios.github.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
- * @version  GIT: master
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
 /**
- * Symfony2_Sniffs_Classes_MultipleClassesOneFileSniff.
- *
  * Throws errors if multiple classes are defined in a single file.
+ *
+ * PHP version 5
  *
  * Symfony coding standard specifies: "Define one class per file;"
  *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   Dave Hauenstein <davehauenstein@gmail.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
-class Symfony2_Sniffs_Classes_MultipleClassesOneFileSniff implements PHP_CodeSniffer_Sniff
+class Symfony2_Sniffs_Classes_MultipleClassesOneFileSniff
+    implements PHP_CodeSniffer_Sniff
 {
     /**
      * The number of times the T_CLASS token is encountered in the file.

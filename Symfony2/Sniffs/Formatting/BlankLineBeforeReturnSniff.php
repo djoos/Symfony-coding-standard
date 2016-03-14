@@ -6,27 +6,27 @@
  * PHP version 5
  *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   Symfony2-phpcs-authors <Symfony2-coding-standard@escapestudios.github.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
- * @version  GIT: master
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
 /**
- * Symfony2_Sniffs_Formatting_BlankLineBeforeReturnSniff.
- *
- * Throws errors if there's no blank line before return statements. Symfony
- * coding standard specifies: "Add a blank line before return statements,
+ * Throws errors if there's no blank line before return statements.
+ * Symfony coding standard specifies: "Add a blank line before return statements,
  * unless the return is alone inside a statement-group (like an if statement);"
  *
+ * PHP version 5
+ *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   Dave Hauenstein <davehauenstein@gmail.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
-class Symfony2_Sniffs_Formatting_BlankLineBeforeReturnSniff implements PHP_CodeSniffer_Sniff
+class Symfony2_Sniffs_Formatting_BlankLineBeforeReturnSniff
+    implements PHP_CodeSniffer_Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
