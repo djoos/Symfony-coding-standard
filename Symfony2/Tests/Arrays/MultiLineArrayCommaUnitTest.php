@@ -40,12 +40,12 @@ class Symfony2_Tests_Arrays_MultiLineArrayCommaUnitTest
     public function getErrorList()
     {
         return array(
-            11  => 1,
-            24 => 1,
-            37 => 1,
-            47 => 1,
-            60 => 1,
-            70 => 1,
+            11 => 1,
+            27 => 1,
+            43 => 1,
+            53 => 1,
+            74 => 1,
+            84 => 1,
         );
     }
 
