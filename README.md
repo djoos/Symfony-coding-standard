@@ -34,7 +34,7 @@ This standard can be installed with the [Composer](https://getcomposer.org/) dep
 
 2. Checkout this repository 
 
-        git clone git://github.com/escapestudios/Symfony2-coding-standard.git
+        git clone git://github.com/djoos/Symfony2-coding-standard.git
 
 3. Add the coding standard to the PHP_CodeSniffer install path
 
