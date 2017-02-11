@@ -86,7 +86,7 @@ class Symfony2_Sniffs_Arrays_MultiLineArrayCommaSniff
                     );
 
                     if ($fix === true) {
-                        $ptr = $phpcsFile->findPrevious([T_WHITESPACE, T_COMMENT], $closePtr-1, $stackPtr, true);
+                        $ptr = $phpcsFile->findPrevious(array(T_WHITESPACE, T_COMMENT), $closePtr-1, $stackPtr, true);
 
                         $phpcsFile->fixer->addContent($ptr, ',');
                         $phpcsFile->fixer->endChangeset();
