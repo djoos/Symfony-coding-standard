@@ -67,6 +67,7 @@ class Symfony2_Sniffs_Objects_ObjectInstantiationSniff
             T_NS_SEPARATOR,
             T_VARIABLE,
             T_STATIC,
+            T_SELF,
         );
 
         $object = $stackPtr;
