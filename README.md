@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/escapestudios/Symfony2-coding-standard.png)](http://travis-ci.org/escapestudios/Symfony2-coding-standard)
+[![Build Status](https://secure.travis-ci.org/escapestudios/Symfony2-coding-standard.png)](http://travis-ci.org/djoos/Symfony2-coding-standard)
 
 # Symfony2 PHP CodeSniffer Coding Standard
 
