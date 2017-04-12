@@ -28,7 +28,7 @@ This standard can be installed with the [Composer](https://getcomposer.org/) dep
 
         vendor/bin/phpcs /path/to/code
 
-### Stand-alone
+### Stand-alone
 
 1. Install [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
