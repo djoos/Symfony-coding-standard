@@ -8,6 +8,23 @@ php:
   - 7.0
   - hhvm
 
+# @todo take out plaster for getting Travis CI tests working again on PHP7 --->
+# More information?
+# https://github.com/squizlabs/PHP_CodeSniffer/pull/1384
+# https://core.trac.wordpress.org/ticket/40086 -> https://core.trac.wordpress.org/changeset/40255
+# https://github.com/Yoast/yoastcs/pull/25/files
+before_script:
+  - stable='^[0-9\.]+$'; if [[ "$TRAVIS_PHP_VERSION" =~ $stable ]]; then phpenv config-rm xdebug.ini; fi
+  - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  - |
+    if [[ ${TRAVIS_PHP_VERSION:0:2} == "7." ]]; then
+      composer global require "phpunit/phpunit=5.7.*"
+    else
+      composer global require "phpunit/phpunit=4.8.*"
+    fi
+  - phpunit --version
+# <---
+
 script:
     - ant travis
 
