@@ -58,7 +58,8 @@ class Symfony2_Sniffs_Commenting_FunctionCommentSniff
                 T_OPEN_TAG
             ),
             ($stackPtr - 1)
-        )) {
+        )
+        ) {
             return;
         }
 
