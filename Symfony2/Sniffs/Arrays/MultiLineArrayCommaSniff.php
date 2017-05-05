@@ -71,24 +71,40 @@ class Symfony2_Sniffs_Arrays_MultiLineArrayCommaSniff
         }
 
         if ($open['line'] <> $tokens[$closePtr]['line']) {
-            $lastComma = $phpcsFile->findPrevious(T_COMMA, $closePtr);
+            $arrayIsNotEmpty = $phpcsFile->findPrevious(
+                array(
+                    T_WHITESPACE,
+                    T_COMMENT,
+                    T_ARRAY,
+                    T_OPEN_PARENTHESIS,
+                    T_OPEN_SHORT_ARRAY,
+                ),
+                $closePtr - 1,
+                $stackPtr,
+                true
+            );
+            if ($arrayIsNotEmpty !== false) {
+                $lastCommaPtr = $phpcsFile->findPrevious(
+                    T_COMMA,
+                    $closePtr,
+                    $stackPtr
+                );
+                while ($lastCommaPtr < $closePtr -1) {
+                    $lastCommaPtr++;
 
-            while ($lastComma < $closePtr -1) {
-                $lastComma++;
-
-                if ($tokens[$lastComma]['code'] !== T_WHITESPACE
-                    && $tokens[$lastComma]['code'] !== T_COMMENT
-                ) {
-                    $phpcsFile->addError(
-                        'Add a comma after each item in a multi-line array',
-                        $stackPtr,
-                        'Invalid'
-                    );
-                    break;
+                    if ($tokens[$lastCommaPtr]['code'] !== T_WHITESPACE
+                        && $tokens[$lastCommaPtr]['code'] !== T_COMMENT
+                    ) {
+                        $phpcsFile->addError(
+                            'Add a comma after each item in a multi-line array',
+                            $stackPtr,
+                            'Invalid'
+                        );
+                        break;
+                    }
                 }
             }
         }
-
     }
 
 }
