@@ -12,15 +12,9 @@
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
-if (class_exists('PHP_CodeSniffer_Tokenizers_Comment', true) === false) {
-    $error = 'Class PHP_CodeSniffer_Tokenizers_Comment not found';
-    throw new PHP_CodeSniffer_Exception($error);
-}
+namespace Symfony2\Sniffs\Commenting;
 
-if (class_exists('PEAR_Sniffs_Commenting_ClassCommentSniff', true) === false) {
-    $error = 'Class PEAR_Sniffs_Commenting_ClassCommentSniff not found';
-    throw new PHP_CodeSniffer_Exception($error);
-}
+use PHP_CodeSniffer\Standards\PEAR\Sniffs\Commenting\ClassCommentSniff as PearClassCommentSniff;
 
 /**
  * Parses and verifies the doc comments for classes.
@@ -44,8 +38,7 @@ if (class_exists('PEAR_Sniffs_Commenting_ClassCommentSniff', true) === false) {
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     http://pear.php.net/package/PHP_CodeSniffer
  */
-class Symfony2_Sniffs_Commenting_ClassCommentSniff
-    extends PEAR_Sniffs_Commenting_ClassCommentSniff
+class ClassCommentSniff extends PearClassCommentSniff
 {
     /**
      * Tags in correct order and related info.

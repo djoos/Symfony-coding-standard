@@ -12,12 +12,17 @@
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
+namespace Symfony2\Sniffs\Classes;
+
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
 /**
- * Symfony2_Sniffs_Classes_PropertyDeclarationSniff.
+ * PropertyDeclarationSniff.
  *
  * Throws warnings if properties are declared after methods
  *
-* PHP version 5
+ * PHP version 5
  *
  * @category PHP
  * @package  Symfony2-coding-standard
@@ -25,8 +30,7 @@
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
-class Symfony2_Sniffs_Classes_PropertyDeclarationSniff
-    implements PHP_CodeSniffer_Sniff
+class PropertyDeclarationSniff implements Sniff
 {
 
     /**
@@ -53,13 +57,13 @@ class Symfony2_Sniffs_Classes_PropertyDeclarationSniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param File $phpcsFile The file being scanned.
+     * @param int  $stackPtr  The position of the current token
+     *                        in the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
 

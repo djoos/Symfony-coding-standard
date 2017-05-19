@@ -41,7 +41,6 @@
 
     <target name="phpunit" depends="symlink-this-coding-standard" description="Run unit tests with PHPUnit">
         <exec executable="phpunit" failonerror="true" >
-            <arg value="--filter=Symfony2_*" />
             <arg value="${phpcs.dir}/tests/AllTests.php" />
         </exec>
     </target>
