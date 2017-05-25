@@ -36,7 +36,3 @@ script:
 branches:
   except:
     - jenkins
-
-notifications:
-  email:
-    - dev@escapestudios.com
