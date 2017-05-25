@@ -32,7 +32,3 @@ before_script:
 
 script:
     - ant travis
-
-branches:
-  except:
-    - jenkins
