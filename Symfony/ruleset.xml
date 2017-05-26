@@ -14,19 +14,6 @@
     <!--
 
     See the [documented coding standard](http://symfony.com/doc/current/contributing/code/standards.html)
-
-    This CodeSniffer standard does not yet enforce the following:
-
-    # Structure
-
-    * The @package and @subpackage annotations are not used.
-    * Use uppercase strings for constants with words separated with underscores
-    * Exception message strings should be concatenated using sprintf
-
-    # Naming Conventions
-
-    * Use underscores for option, argument, parameter names;
-
     -->
 
     <rule ref="Generic.ControlStructures.InlineControlStructure"/>
