@@ -7,9 +7,9 @@
  *
  * @category PHP
  * @package  Symfony2-coding-standard
- * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
+ * @author   Authors <Symfony2-coding-standard@djoos.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
- * @link     https://github.com/escapestudios/Symfony2-coding-standard
+ * @link     https://github.com/djoos/Symfony2-coding-standard
  */
 
 namespace Symfony\Sniffs\Commenting;
@@ -34,7 +34,7 @@ use PHP_CodeSniffer\Standards\PEAR\Sniffs\Commenting\ClassCommentSniff as PearCl
  *
  * @category PHP
  * @package  Symfony2-coding-standard
- * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
+ * @author   Authors <Symfony2-coding-standard@djoos.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     http://pear.php.net/package/PHP_CodeSniffer
  */
