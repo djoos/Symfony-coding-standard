@@ -65,16 +65,6 @@ class FunctionCommentSniff extends PearFunctionCommentSniff
         $tokens = $phpcsFile->getTokens();
         $code = $tokens[$commentEnd]['code'];
 
-        // a comment is not required on protected/private methods
-        $method = $phpcsFile->getMethodProperties($stackPtr);
-        $commentRequired = 'public' == $method['scope'];
-
-        if (($code === T_COMMENT && !$commentRequired)
-            || ($code !== T_DOC_COMMENT && !$commentRequired)
-        ) {
-            return;
-        }
-
         parent::process($phpcsFile, $stackPtr);
     }
 
@@ -189,6 +179,6 @@ class FunctionCommentSniff extends PearFunctionCommentSniff
             $returnPos++;
         } while ($tokens[$returnPos]['code'] === T_WHITESPACE);
 
-        return $tokens[$returnPos]['code'] !== T_SEMICOLON;
+        return ($tokens[$returnPos]['code'] !== T_SEMICOLON && $tokens[$returnPos]['code'] !== 'PHPCS_T_NULL');
     }
 }
