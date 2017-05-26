@@ -12,6 +12,10 @@
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
+namespace Symfony2\Tests\Formatting;
+
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
 /**
  * Unit test class for the BlankLineBeforeReturn sniff.
  *
@@ -26,8 +30,7 @@
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
-class Symfony2_Tests_Formatting_BlankLineBeforeReturnUnitTest
-    extends AbstractSniffUnitTest
+class BlankLineBeforeReturnUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

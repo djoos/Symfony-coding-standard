@@ -12,11 +12,11 @@
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
-if (class_exists('PHP_CodeSniffer_Standards_AbstractScopeSniff', true) === false) {
-    throw new PHP_CodeSniffer_Exception(
-        'Class PHP_CodeSniffer_Standards_AbstractScopeSniff not found'
-    );
-}
+namespace Symfony2\Sniffs\Objects;
+
+use PHP_CodeSniffer\Sniffs\AbstractScopeSniff;
+use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * Verifies that class members have scope modifiers.
@@ -29,11 +29,10 @@ if (class_exists('PHP_CodeSniffer_Standards_AbstractScopeSniff', true) === false
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     http://pear.php.net/package/PHP_CodeSniffer
  */
-class Symfony2_Sniffs_Scope_MethodScopeSniff
-    extends PHP_CodeSniffer_Standards_AbstractScopeSniff
+class MethodScopeSniff extends AbstractScopeSniff
 {
     /**
-     * Constructs a Symfony2_Sniffs_Scope_MethodScopeSniff.
+     * Constructs a MethodScopeSniff.
      */
     public function __construct()
     {
@@ -44,14 +43,14 @@ class Symfony2_Sniffs_Scope_MethodScopeSniff
     /**
      * Processes the function tokens within the class.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file where this token was found.
-     * @param int                  $stackPtr  The position where the token was found.
-     * @param int                  $currScope The current scope opener token.
+     * @param File $phpcsFile The file where this token was found.
+     * @param int  $stackPtr  The position where the token was found.
+     * @param int  $currScope The current scope opener token.
      *
      * @return void
      */
     protected function processTokenWithinScope(
-        PHP_CodeSniffer_File $phpcsFile,
+        File $phpcsFile,
         $stackPtr,
         $currScope
     ) {
@@ -64,7 +63,7 @@ class Symfony2_Sniffs_Scope_MethodScopeSniff
         }
 
         $modifier = $phpcsFile->findPrevious(
-            PHP_CodeSniffer_Tokens::$scopeModifiers,
+            Tokens::$scopeModifiers,
             $stackPtr
         );
 
@@ -76,5 +75,15 @@ class Symfony2_Sniffs_Scope_MethodScopeSniff
             $phpcsFile->addError($error, $stackPtr, 'Missing', $data);
         }
 
+    }
+
+    /**
+     * Process tokens outside scope.
+     *
+     * @param File $phpcsFile
+     * @param int  $stackPtr
+     */
+    protected function processTokenOutsideScope(File $phpcsFile, $stackPtr)
+    {
     }
 }

@@ -12,6 +12,10 @@
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
+namespace Symfony2\Tests\Objects;
+
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+
 /**
  * Unit test class for the ObjectInstantiation sniff.
  *
@@ -26,8 +30,7 @@
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
-class Symfony2_Tests_Objects_ObjectInstantiationUnitTest
-    extends AbstractSniffUnitTest
+class ObjectInstantiationUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

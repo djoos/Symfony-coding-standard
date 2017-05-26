@@ -12,8 +12,13 @@
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
+namespace Symfony2\Sniffs\Arrays;
+
+use PHP_CodeSniffer\Sniffs\Sniff;
+use PHP_CodeSniffer\Files\File;
+
 /**
- * Symfony2_Sniffs_WhiteSpace_MultiLineArrayCommaSniff.
+ * MultiLineArrayCommaSniff.
  *
  * Throws warnings if the last item in a multi line array does not have a
  * trailing comma
@@ -24,8 +29,7 @@
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
-class Symfony2_Sniffs_Arrays_MultiLineArrayCommaSniff
-    implements PHP_CodeSniffer_Sniff
+class MultiLineArrayCommaSniff implements Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -53,13 +57,13 @@ class Symfony2_Sniffs_Arrays_MultiLineArrayCommaSniff
     /**
      * Processes this test, when one of its tokens is encountered.
      *
-     * @param PHP_CodeSniffer_File $phpcsFile The file being scanned.
-     * @param int                  $stackPtr  The position of the current token
-     *                                        in the stack passed in $tokens.
+     * @param File $phpcsFile The file being scanned.
+     * @param int  $stackPtr  The position of the current token
+     *                        in the stack passed in $tokens.
      *
      * @return void
      */
-    public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
+    public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
         $open   = $tokens[$stackPtr];
