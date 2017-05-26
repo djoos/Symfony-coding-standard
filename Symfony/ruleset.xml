@@ -96,6 +96,10 @@
         <type>error</type>
     </rule>
 
+    <rule ref="Symfony.Commenting.ClassComment.Blacklisted">
+        <type>error</type>
+    </rule>
+
     <rule ref="Symfony.Commenting.FunctionComment.SpacingBeforeTags">
         <severity>0</severity>
     </rule>

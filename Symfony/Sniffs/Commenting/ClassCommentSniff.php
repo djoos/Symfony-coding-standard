@@ -51,16 +51,6 @@ class ClassCommentSniff extends PearClassCommentSniff
             'allow_multiple' => false,
             'order_text' => 'precedes @package',
         ),
-        'package' => array(
-            'required' => false,
-            'allow_multiple' => false,
-            'order_text' => 'follows @category',
-        ),
-        'subpackage' => array(
-            'required' => false,
-            'allow_multiple' => false,
-            'order_text' => 'follows @package',
-        ),
         'author' => array(
             'required' => false,
             'allow_multiple' => true,
@@ -102,4 +92,35 @@ class ClassCommentSniff extends PearClassCommentSniff
             'order_text' => 'follows @since (if used) or @see (if used) or @link',
         ),
     );
+
+    protected $blacklist = array(
+        '@package',
+        '@subpackage',
+    );
+
+    /**
+     * Processes each tag and raise an error if there are blacklisted tags.
+     *
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile    The file being scanned.
+     * @param int                         $stackPtr     The position of the current token
+     *                                                  in the stack passed in $tokens.
+     * @param int                         $commentStart Position in the stack where the comment started.
+     *
+     * @return void
+     */
+    protected function processTags($phpcsFile, $stackPtr, $commentStart)
+    {
+        $tokens = $phpcsFile->getTokens();
+
+        foreach ($tokens[$commentStart]['comment_tags'] as $tag) {
+            $name = $tokens[$tag]['content'];
+
+            if (in_array($name, $this->blacklist)) {
+                $error = sprintf('The %s tag is not allowed.', $name);
+                $phpcsFile->addError($error, $tag, 'Blacklisted');
+            }
+        }
+
+        parent::processTags($phpcsFile, $stackPtr, $commentStart);
+    }
 }
