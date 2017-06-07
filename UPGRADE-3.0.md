@@ -4,6 +4,7 @@ UPGRADE FROM 2.x TO 3.0
 Table of contents
 - [Standard](#standard)
 - [Ruleset](#ruleset)
+- [Warnings](#warnings)
 
 Standard
 --------
@@ -31,3 +32,11 @@ After:
     // ...
 </rule>
 ```
+
+Warnings
+--------
+Both the ``The license block has to be present at the top of every PHP file, before the namespace`` and the ``Always use identical comparison unless you need type juggling`` messages will appear as warnings as these sniffs are unable to determine whether or not it's an error.
+In order to suppress those warnings one can get rid of them with: 
+ ```
+ phpcs --config-set show_warnings 0
+ ```
