@@ -99,8 +99,6 @@ class FunctionCommentSniff extends PearFunctionCommentSniff
      */
     protected function isInheritDoc(File $phpcsFile, $stackPtr)
     {
-        $tokens = $phpcsFile->getTokens();
-
         $start = $phpcsFile->findPrevious(T_DOC_COMMENT_OPEN_TAG, $stackPtr - 1);
         $end = $phpcsFile->findNext(T_DOC_COMMENT_CLOSE_TAG, $start);
 
@@ -125,8 +123,6 @@ class FunctionCommentSniff extends PearFunctionCommentSniff
         $stackPtr,
         $commentStart
     ) {
-        $tokens = $phpcsFile->getTokens();
-
         if ($this->isInheritDoc($phpcsFile, $stackPtr)) {
             return;
         }
