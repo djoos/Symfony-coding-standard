@@ -2,7 +2,16 @@ UPGRADE FROM 2.x TO 3.0
 -----------------------
 
 Table of contents
+- [Standard](#standard)
 - [Ruleset](#ruleset)
+
+Standard
+--------
+In version 3.0 we changed the standards name from ``Symfony2`` to ``Symfony`` as this standard is not bound to any version of Symfony.
+Make sure you set your standard accordingly:
+```
+phpcs --config-set default_standard Symfony
+```
 
 Ruleset
 -------
