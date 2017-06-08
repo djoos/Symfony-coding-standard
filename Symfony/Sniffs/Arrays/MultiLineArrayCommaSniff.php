@@ -1,15 +1,15 @@
 <?php
 /**
- * This file is part of the Symfony2-coding-standard (phpcs standard)
+ * This file is part of the Symfony-coding-standard (phpcs standard)
  *
  * PHP version 5
  *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
+ * @package  PHP_CodeSniffer-Symfony
  * @author   wicliff wolda <dev@bloody-wicked.com>
  * @license  http://spdx.org/licenses/MIT MIT License
  * @version  GIT: master
- * @link     https://github.com/djoos/Symfony2-coding-standard
+ * @link     https://github.com/djoos/Symfony-coding-standard
  */
 
 namespace Symfony\Sniffs\Arrays;
@@ -24,10 +24,10 @@ use PHP_CodeSniffer\Files\File;
  * trailing comma
  *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
+ * @package  PHP_CodeSniffer-Symfony
  * @author   wicliff wolda <dev@bloody-wicked.com>
  * @license  http://spdx.org/licenses/MIT MIT License
- * @link     https://github.com/djoos/Symfony2-coding-standard
+ * @link     https://github.com/djoos/Symfony-coding-standard
  */
 class MultiLineArrayCommaSniff implements Sniff
 {
