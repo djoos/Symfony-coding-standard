@@ -1,15 +1,15 @@
 <?php
 
 /**
- * This file is part of the Symfony2-coding-standard (phpcs standard)
+ * This file is part of the Symfony-coding-standard (phpcs standard)
  *
  * PHP version 5
  *
  * @category PHP
- * @package  Symfony2-coding-standard
- * @author   Authors <Symfony2-coding-standard@djoos.github.com>
+ * @package  Symfony-coding-standard
+ * @author   Authors <Symfony-coding-standard@djoos.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
- * @link     https://github.com/djoos/Symfony2-coding-standard
+ * @link     https://github.com/djoos/Symfony-coding-standard
  */
 
 /**
@@ -20,10 +20,10 @@
  * Symfony coding standard specifies: "Define one class per file;"
  *
  * @category PHP
- * @package  Symfony2-coding-standard
- * @author   Authors <Symfony2-coding-standard@djoos.github.com>
+ * @package  Symfony-coding-standard
+ * @author   Authors <Symfony-coding-standard@djoos.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
- * @link     https://github.com/djoos/Symfony2-coding-standard
+ * @link     https://github.com/djoos/Symfony-coding-standard
  */
 
 namespace Symfony\Sniffs\Classes;
@@ -31,6 +31,15 @@ namespace Symfony\Sniffs\Classes;
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Files\File;
 
+/**
+ * MultipleClassesOneFileSniff.
+ *
+ * @category PHP
+ * @package  PHP_CodeSniffer-Symfony
+ * @author   Authors <Symfony-coding-standard@djoos.github.com>
+ * @license  http://spdx.org/licenses/MIT MIT License
+ * @link     https://github.com/djoos/Symfony-coding-standard
+ */
 class MultipleClassesOneFileSniff implements Sniff
 {
     /**
