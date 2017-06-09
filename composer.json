@@ -1,6 +1,6 @@
 {
     "name": "escapestudios/symfony2-coding-standard",
-    "type": "coding-standard",
+    "type": "phpcodesniffer-standard",
     "description": "CodeSniffer ruleset for the Symfony 2+ coding standard",
     "keywords": ["Symfony2", "Symfony", "coding standard", "phpcs"],
     "homepage": "https://github.com/djoos/Symfony2-coding-standard",
@@ -8,7 +8,7 @@
     "authors": [
         {
             "name": "David Joos",
-            "email": "david.joos@escapestudios.com"
+            "email": "iam@davidjoos.com"
         },
         {
             "name": "Community contributors",
@@ -17,11 +17,11 @@
     ],
     "extra": {
         "branch-alias": {
-            "dev-master": "2.x-dev"
+            "dev-master": "3.x-dev"
         }
     },
     "minimum-stability": "dev",
     "require": {
-        "squizlabs/php_codesniffer": "~2.0"
+        "squizlabs/php_codesniffer": "3.*"
     }
 }
