@@ -1,14 +1,14 @@
 <?php
+
 /**
  * This file is part of the Symfony2-coding-standard (phpcs standard)
  *
  * PHP version 5
  *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   Symfony2-phpcs-authors <Symfony2-coding-standard@escapestudios.github.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
- * @version  GIT: master
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
@@ -18,14 +18,16 @@
  * A sniff unit test checks a .inc file for expected violations of a single
  * coding standard. Expected errors and warnings are stored in this class.
  *
+ * PHP version 5
+ *
  * @category PHP
- * @package  PHP_CodeSniffer
- * @author   Roman Weich <roman.weich@gmail.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
-
-class Symfony2_Tests_Objects_ObjectInstantiationUnitTest extends AbstractSniffUnitTest
+class Symfony2_Tests_Objects_ObjectInstantiationUnitTest
+    extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.

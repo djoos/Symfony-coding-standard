@@ -6,10 +6,9 @@
  * PHP version 5
  *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   wicliff wolda <dev@bloody-wicked.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
- * @version  GIT: master
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 
@@ -18,13 +17,16 @@
  *
  * Throws warnings if a binary operator isn't surrounded with whitespace.
  *
+ * PHP version 5
+ *
  * @category PHP
- * @package  PHP_CodeSniffer-Symfony2
- * @author   wicliff wolda <dev@bloody-wicked.com>
+ * @package  Symfony2-coding-standard
+ * @author   Authors <Symfony2-coding-standard@escapestudios.github.com>
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/escapestudios/Symfony2-coding-standard
  */
 class Symfony2_Sniffs_WhiteSpace_BinaryOperatorSpacingSniff
+    implements PHP_CodeSniffer_Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
@@ -44,7 +46,7 @@ class Symfony2_Sniffs_WhiteSpace_BinaryOperatorSpacingSniff
     {
         return PHP_CodeSniffer_Tokens::$comparisonTokens;
 
-    }//end register()
+    }
 
     /**
      * Processes this test, when one of its tokens is encountered.
@@ -59,13 +61,14 @@ class Symfony2_Sniffs_WhiteSpace_BinaryOperatorSpacingSniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if ($tokens[$stackPtr -1]['code'] !== T_WHITESPACE || $tokens[$stackPtr +1]['code'] !== T_WHITESPACE) {
+        if ($tokens[$stackPtr -1]['code'] !== T_WHITESPACE
+            || $tokens[$stackPtr +1]['code'] !== T_WHITESPACE
+        ) {
             $phpcsFile->addError(
                 'Add a single space around binary operators',
                 $stackPtr,
                 'Invalid'
             );
         }
-    }//end process()
-
-}//end class
+    }
+}

@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/escapestudios/Symfony2-coding-standard.png)](http://travis-ci.org/escapestudios/Symfony2-coding-standard)
+[![Build Status](https://secure.travis-ci.org/djoos/Symfony2-coding-standard.png)](http://travis-ci.org/djoos/Symfony2-coding-standard)
 
 # Symfony2 PHP CodeSniffer Coding Standard
 
@@ -28,13 +28,13 @@ This standard can be installed with the [Composer](https://getcomposer.org/) dep
 
         vendor/bin/phpcs /path/to/code
 
-### Stand-alone
+### Stand-alone
 
 1. Install [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
 
 2. Checkout this repository 
 
-        git clone git://github.com/escapestudios/Symfony2-coding-standard.git
+        git clone git://github.com/djoos/Symfony2-coding-standard.git
 
 3. Add the coding standard to the PHP_CodeSniffer install path
 

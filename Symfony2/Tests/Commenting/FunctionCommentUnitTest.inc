@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @param string $test
+ * @param string $test Test argument
  */
 function test($test)
 {
@@ -9,7 +9,7 @@ function test($test)
 }
 
 /**
- * @param string $test
+ * @param string $test Test argument
  *
  * @return int
  */
@@ -19,7 +19,7 @@ function test($test)
 }
 
 /**
- * @param array $tab
+ * @param array $tab Test argument
  */
 function testWithCallBack($tab)
 {

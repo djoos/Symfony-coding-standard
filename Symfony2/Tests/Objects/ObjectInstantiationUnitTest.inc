@@ -1,6 +1,6 @@
 <?php
 
-//bad
+// bad
 new Foo;
 new Foo\Bar;
 new \Foo\Bar;
@@ -9,7 +9,7 @@ new Foo ();
 new static;
 new self;
 
-//good
+// good
 new Foo();
 new foo();
 new Foo(true);
@@ -26,3 +26,6 @@ new $foo($this->foo);
 new static();
 new static(true);
 new static($this->foo);
+new self();
+new self(true);
+new self($this->foo);
