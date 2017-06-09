@@ -70,21 +70,25 @@ class ReturnOrThrowSniff implements Sniff
         $tokens = $phpcsFile->getTokens();
         $elem = $tokens[$stackPtr];
 
-        $opener = $phpcsFile->findPrevious($this->openers, $stackPtr);
+        // find the function we're currently in and an if or case statement
+        $function = $phpcsFile->findPrevious(T_FUNCTION, $stackPtr);
+        $opener = $phpcsFile->findPrevious($this->openers, $stackPtr, $tokens[$function]['scope_opener']);
 
+        // check whether the return / throw is within a if or case statement
         if ($opener && $elem['line'] <= $tokens[$tokens[$opener]['scope_closer']]['line']) {
-            $condition = $phpcsFile->findNext($this->conditions, $stackPtr + 1);
+            // check whether there's an elseif / else / break following the if or case statement
+            $condition = $phpcsFile->findNext($this->conditions, $stackPtr + 1, $tokens[$function]['scope_closer']);
 
-            if (false !== $condition) {
-                $next = $phpcsFile->findNext($this->openers, $stackPtr + 1);
+            if (false !== $condition){
+                if (T_CASE === $tokens[$opener]['code']) {
+                    $next = $phpcsFile->findNext([T_CASE, T_DEFAULT], $stackPtr + 1, $tokens[$function]['scope_closer']);
 
-                if (false !== $next) {
-                    $err = (isset($tokens[$condition]['scope_closer']) && isset($tokens[$next]['scope_opener'])) ? $tokens[$condition]['scope_closer'] < $tokens[$next]['scope_opener'] : $tokens[$condition]['line'] <= $tokens[$next]['line'];
+                    $err = (false === $next) ? true : $tokens[$condition]['line'] < $tokens[$next]['line'];
                 } else {
-                    $err = false;
+                    $err = $tokens[$condition]['line'] === $tokens[$tokens[$opener]['scope_closer']]['line'];
                 }
 
-                if (false === $next || true === $err) {
+                if ($err) {
                     $phpcsFile->addError(
                         'Do not use else, elseif, break after if and case conditions which return or throw something',
                         $stackPtr,
