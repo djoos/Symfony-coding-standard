@@ -69,6 +69,14 @@ class MultiLineArrayCommaSniff implements Sniff
         $open   = $tokens[$stackPtr];
 
         if ($open['code'] === T_ARRAY) {
+            // search for nested arrays
+            $next = $phpcsFile->findNext($this->register(), $stackPtr + 1, $open['parenthesis_closer']);
+
+            if (false !== $next) {
+                $stackPtr = $next;
+                $open = $tokens[$next];
+            }
+
             $closePtr = $open['parenthesis_closer'];
         } else {
             $closePtr = $open['bracket_closer'];
