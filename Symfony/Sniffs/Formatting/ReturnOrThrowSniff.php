@@ -72,6 +72,11 @@ class ReturnOrThrowSniff implements Sniff
 
         // find the function we're currently in and an if or case statement
         $function = $phpcsFile->findPrevious(T_FUNCTION, $stackPtr);
+
+        if (false === $function) {
+            return;
+        }
+
         $opener = $phpcsFile->findPrevious($this->openers, $stackPtr, $tokens[$function]['scope_opener']);
 
         // check whether the return / throw is within a if or case statement
