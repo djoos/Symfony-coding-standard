@@ -12,12 +12,12 @@
  * @link     https://github.com/djoos/Symfony2-coding-standard
  */
 
-namespace Symfony\Tests\Objects;
+namespace Symfony\Tests\Commenting;
 
 use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
 
 /**
- * Unit test class for the ObjectInstantiation sniff.
+ * Unit test class for the LicenseUnitTest sniff.
  *
  * A sniff unit test checks a .inc file for expected violations of a single
  * coding standard. Expected errors and warnings are stored in this class.
@@ -26,11 +26,11 @@ use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
  *
  * @category PHP
  * @package  Symfony-coding-standard
- * @author   Authors <Symfony2-coding-standard@djoos.github.com>
+ * @author   wicliff <wicliff.wolda@gmail.com>
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/djoos/Symfony2-coding-standard
  */
-class ObjectInstantiationUnitTest extends AbstractSniffUnitTest
+class LicenseUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -42,27 +42,21 @@ class ObjectInstantiationUnitTest extends AbstractSniffUnitTest
      */
     public function getErrorList()
     {
-        return array(
-            4  => 1,
-            5  => 1,
-            6  => 1,
-            7  => 1,
-            8  => 1,
-            9  => 1,
-            10 => 1,
-        );
+        return array();
     }
 
     /**
      * Returns the lines where warnings should occur.
      *
      * The key of the array should represent the line number and the value
-     * should represent the number of errors that should occur on that line.
+     * should represent the number of warnings that should occur on that line.
      *
      * @return array(int => int)
      */
-    public function getWarningList()
+    protected function getWarningList()
     {
-        return array();
+        return array(
+            3 => 1,
+        );
     }
 }
