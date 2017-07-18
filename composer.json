@@ -12,7 +12,7 @@
         },
         {
             "name": "Community contributors",
-            "homepage": "https://github.com/djoos/Symfony2-coding-standard/graphs/contributors"
+            "homepage": "https://github.com/djoos/Symfony-coding-standard/graphs/contributors"
         }
     ],
     "extra": {
