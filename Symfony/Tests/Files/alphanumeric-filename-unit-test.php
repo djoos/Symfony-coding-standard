@@ -25,8 +25,8 @@ use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
  * PHP version 5
  *
  * @category PHP
- * @package  Symfony2-coding-standard
- * @author   Authors <Symfony2-coding-standard@djoos.github.com>
+ * @package  Symfony-coding-standard
+ * @author   wicliff <wicliff.wolda@gmail.com>
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/djoos/Symfony2-coding-standard
  */

@@ -12,12 +12,12 @@
  * @link     https://github.com/djoos/Symfony2-coding-standard
  */
 
-namespace Symfony\Tests\Objects;
+namespace Symfony\Tests\Functions;
 
 use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
 
 /**
- * Unit test class for the ObjectInstantiation sniff.
+ * Unit test class for the ScopeOrderUnitTest sniff.
  *
  * A sniff unit test checks a .inc file for expected violations of a single
  * coding standard. Expected errors and warnings are stored in this class.
@@ -26,11 +26,11 @@ use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
  *
  * @category PHP
  * @package  Symfony-coding-standard
- * @author   Authors <Symfony2-coding-standard@djoos.github.com>
+ * @author   wicliff <wicliff.wolda@gmail.com>
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/djoos/Symfony2-coding-standard
  */
-class ObjectInstantiationUnitTest extends AbstractSniffUnitTest
+class ScopeOrderUnitTest extends AbstractSniffUnitTest
 {
     /**
      * Returns the lines where errors should occur.
@@ -43,13 +43,8 @@ class ObjectInstantiationUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            4  => 1,
-            5  => 1,
-            6  => 1,
-            7  => 1,
-            8  => 1,
-            9  => 1,
-            10 => 1,
+            7 => 1,
+            9 => 1,
         );
     }
 
