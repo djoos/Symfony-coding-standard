@@ -8,6 +8,10 @@ new $foo;
 new Foo ();
 new static;
 new self;
+new Foo::bar;
+new Foo::bar[true];
+new $foo->bar;
+new $foo->bar[true];
 
 // good
 new Foo();
@@ -29,3 +33,5 @@ new static($this->foo);
 new self();
 new self(true);
 new self($this->foo);
+new Foo::bar();
+new $foo->bar();
