@@ -68,6 +68,10 @@ class Symfony2_Sniffs_Objects_ObjectInstantiationSniff
             T_VARIABLE,
             T_STATIC,
             T_SELF,
+            T_DOUBLE_COLON,
+            T_OBJECT_OPERATOR,
+            T_OPEN_SQUARE_BRACKET,
+            T_CLOSE_SQUARE_BRACKET,
         );
 
         $object = $stackPtr;
