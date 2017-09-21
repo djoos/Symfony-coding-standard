@@ -59,9 +59,18 @@ class ExceptionMessageSniff implements Sniff
         $tokens = $phpcsFile->getTokens();
         $opener = $phpcsFile->findNext(T_OPEN_PARENTHESIS, $stackPtr);
 
-        if ($phpcsFile->findNext(T_STRING_CONCAT, $tokens[$opener]['parenthesis_opener'], $tokens[$opener]['parenthesis_closer'])) {
-            $error = 'Exception and error message strings must be concatenated using sprintf';
-            $phpcsFile->addError($error, $stackPtr, 'Invalid');
+        // No parenthesis found after the throw, no additional check required
+        if ($opener === false) {
+            return;
+        }
+        
+        // Check the content of the found parenthesis only if it is in the same statement as the throw
+        $endOfStatement = $phpcsFile->findNext(T_SEMICOLON, $stackPtr);
+        if ($endOfStatement > $opener) {
+            if ($phpcsFile->findNext(T_STRING_CONCAT, $tokens[$opener]['parenthesis_opener'], $tokens[$opener]['parenthesis_closer'])) {
+                $error = 'Exception and error message strings must be concatenated using sprintf';
+                $phpcsFile->addError($error, $stackPtr, 'Invalid');
+            }
         }
     }
 
