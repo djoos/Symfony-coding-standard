@@ -34,6 +34,4 @@ new self();
 new self(true);
 new self($this->foo);
 new Foo::bar();
-new Foo::bar[true]();
 new $foo->bar();
-new $foo->bar[true]();
