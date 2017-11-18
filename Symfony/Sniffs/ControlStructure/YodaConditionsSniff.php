@@ -28,7 +28,7 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class YodaConditionsSniff implements Sniff
 {
-    private $yodas = array(
+    private $_yodas = array(
         T_IS_EQUAL,
         T_IS_IDENTICAL,
         T_IS_NOT_EQUAL,
@@ -37,6 +37,8 @@ class YodaConditionsSniff implements Sniff
 
     /**
      * Registers the tokens that this sniff wants to listen for.
+     *
+     * @return array
      */
     public function register()
     {
@@ -68,7 +70,7 @@ class YodaConditionsSniff implements Sniff
         $closer = $tokens[$stackPtr]['parenthesis_closer'];
 
         do {
-            $comparison = $phpcsFile->findNext($this->yodas, $opener + 1, $closer);
+            $comparison = $phpcsFile->findNext($this->_yodas, $opener + 1, $closer);
 
             if (false === $comparison) {
                 break;

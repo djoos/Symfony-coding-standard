@@ -80,8 +80,10 @@ class MethodScopeSniff extends AbstractScopeSniff
     /**
      * Process tokens outside scope.
      *
-     * @param File $phpcsFile
-     * @param int  $stackPtr
+     * @param File $phpcsFile The file where this token was found.
+     * @param int  $stackPtr  The position where the token was found.
+     *
+     * @return void
      */
     protected function processTokenOutsideScope(File $phpcsFile, $stackPtr)
     {

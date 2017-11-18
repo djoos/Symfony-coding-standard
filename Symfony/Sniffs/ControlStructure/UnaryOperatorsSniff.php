@@ -30,6 +30,8 @@ class UnaryOperatorsSniff implements Sniff
 {
     /**
      * Registers the tokens that this sniff wants to listen for.
+     *
+     * @return array
      */
     public function register()
     {
