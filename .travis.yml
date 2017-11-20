@@ -20,4 +20,4 @@ before_script:
   - phpunit --version
 
 script:
-    - ant travis
+    - ant test
