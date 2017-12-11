@@ -1,6 +1,10 @@
 <project name="Symfony-coding-standard" default="test">
     <property file="build.properties" />
+    <property environment="env"/>
     <available property="composer.exists" file="${composer.path}" />
+    <condition property="composer.exists">
+        <istrue value="${env.TRAVIS}" />
+    </condition>
 
     <target name="test" depends="vendor,lint,phpunit,phpcs" />
     <target name="travis" depends="vendor,lint,phpunit" />
@@ -35,11 +39,11 @@
     </target>
 
     <target name="phpunit" description="Run unit tests with PHPUnit">
-        <exec executable="phpunit" failonerror="true" />
+        <exec executable="./vendor/bin/phpunit" failonerror="true" />
     </target>
 
     <target name="phpcs" description="Find coding standard violations using PHP Code Sniffer">
-        <exec executable="phpcs" failonerror="true">
+        <exec executable="./vendor/bin/phpcs" failonerror="true">
             <arg value="--standard=${phpcs.standard}" />
             <arg value="--extensions=php" />
             <arg value="--ignore=vendor/*" /> 
