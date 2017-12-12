@@ -19,7 +19,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Util\Tokens;
 
 /**
- * SBinaryOperatorSpacingSniff.
+ * BinaryOperatorSpacingSniff.
  *
  * Throws warnings if a binary operator isn't surrounded with whitespace.
  *
@@ -31,7 +31,7 @@ use PHP_CodeSniffer\Util\Tokens;
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/djoos/Symfony-coding-standard
  */
-class SBinaryOperatorSpacingSniff implements Sniff
+class BinaryOperatorSpacingSniff implements Sniff
 {
     /**
      * A list of tokenizers this sniff supports.
