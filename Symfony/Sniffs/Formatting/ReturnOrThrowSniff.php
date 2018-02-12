@@ -70,8 +70,8 @@ class ReturnOrThrowSniff implements Sniff
         $tokens = $phpcsFile->getTokens();
         $elem = $tokens[$stackPtr];
 
-        // find the function we're currently in and an if or case statement
-        $function = $phpcsFile->findPrevious(T_FUNCTION, $stackPtr);
+        // find the function/closure we're currently in and an if or case statement
+        $function = $phpcsFile->findPrevious([T_FUNCTION, T_CLOSURE], $stackPtr);
 
         if (false === $function) {
             return;
