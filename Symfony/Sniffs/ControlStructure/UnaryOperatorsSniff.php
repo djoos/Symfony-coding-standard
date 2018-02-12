@@ -18,7 +18,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
 /**
- * Checks whether unary operators are defined on the right side of the variable.
+ * Checks whether unary operators are adjacent to the affected variable.
  *
  * @category PHP
  * @package  Symfony-coding-standard
@@ -58,7 +58,7 @@ class UnaryOperatorsSniff implements Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if (T_VARIABLE === $tokens[$stackPtr - 1]['code'] && T_VARIABLE !== $tokens[$stackPtr + 1]['code']) {
+        if (T_VARIABLE !== $tokens[$stackPtr - 1]['code'] && T_VARIABLE !== $tokens[$stackPtr + 1]['code']) {
             $error = 'Place unary operators adjacent to the affected variable';
             $phpcsFile->addError($error, $stackPtr, 'Invalid');
         }
