@@ -21,10 +21,12 @@
         }
     },
     "minimum-stability": "dev",
-    "require": {
-        "squizlabs/php_codesniffer": "3.*"
+    "support" : {
+        "source": "https://github.com/escapestudios/Symfony2-coding-standard",
+        "issues": "https://github.com/escapestudios/Symfony2-coding-standard/issues"
     },
     "require-dev": {
+      "squizlabs/php_codesniffer": "3.*",
         "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0"
     }
 }
