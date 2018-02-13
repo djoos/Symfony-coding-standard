@@ -47,6 +47,10 @@ class UnaryOperatorsUnitTest extends AbstractSniffUnitTest
             13 => 1,
             15 => 1,
             17 => 1,
+            27 => 1,
+            29 => 1,
+            31 => 1,
+            33 => 1,
         );
     }
 
