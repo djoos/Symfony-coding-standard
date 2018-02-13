@@ -15,7 +15,7 @@
 namespace Symfony\Sniffs\Commenting;
 
 use PHP_CodeSniffer\Files\File;
-use PHP_CodeSniffer\Standards\PEAR\Sniffs\Commenting\FunctionCommentSniff as PearFunctionCommentSniff;
+use PHP_CodeSniffer\Standards\PEAR\Sniffs\Commenting\FunctionCommentSniff as Sniff;
 
 /**
  * Symfony standard customization to PEARs FunctionCommentSniff.
@@ -35,7 +35,7 @@ use PHP_CodeSniffer\Standards\PEAR\Sniffs\Commenting\FunctionCommentSniff as Pea
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     http://pear.php.net/package/PHP_CodeSniffer
  */
-class FunctionCommentSniff extends PearFunctionCommentSniff
+class FunctionCommentSniff extends Sniff
 {
     /**
      * Process the return comment of this function comment.

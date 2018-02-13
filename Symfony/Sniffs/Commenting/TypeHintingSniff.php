@@ -28,14 +28,14 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class TypeHintingSniff implements Sniff
 {
-    private static $blacklist = [
+    private static $_blacklist = [
         'boolean' => 'bool',
         'integer' => 'int',
         'double' => 'float',
         'real' => 'float',
     ];
 
-    private static $casts = [
+    private static $_casts = [
         T_BOOL_CAST,
         T_INT_CAST,
         T_DOUBLE_CAST,
@@ -43,6 +43,8 @@ class TypeHintingSniff implements Sniff
 
     /**
      * Registers the tokens that this sniff wants to listen for.
+     *
+     * @return array
      */
     public function register()
     {
@@ -58,11 +60,9 @@ class TypeHintingSniff implements Sniff
      * Called when one of the token types that this sniff is listening for
      * is found.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The PHP_CodeSniffer file where the
-     *                                               token was found.
-     * @param int                         $stackPtr  The position in the PHP_CodeSniffer
-     *                                               file's token stack where the token
-     *                                               was found.
+     * @param File $phpcsFile The file where the token was found.
+     * @param int  $stackPtr  The position of the current token
+     *                        in the stack passed in $tokens.
      *
      * @return void|int Optionally returns a stack pointer. The sniff will not be
      *                  called again on the current file until the returned stack
@@ -76,13 +76,29 @@ class TypeHintingSniff implements Sniff
 
         if ('@var' === $tag['content']) {
             $type = $phpcsFile->findNext(T_DOC_COMMENT_STRING, $stackPtr + 1);
-            $hint = strtolower(preg_replace('/([^\s]+)[\s]+.*/', '$1', $tokens[$type]['content']));
-        } elseif (in_array($tag['code'], self::$casts)) {
-            $hint = strtolower(preg_replace('/\(([^\s]+)\)/', '$1', $tag['content']));
+            $hint = strtolower(
+                preg_replace(
+                    '/([^\s]+)[\s]+.*/',
+                    '$1',
+                    $tokens[$type]['content']
+                )
+            );
+        } elseif (in_array($tag['code'], self::$_casts)) {
+            $hint = strtolower(
+                preg_replace(
+                    '/\(([^\s]+)\)/',
+                    '$1',
+                    $tag['content']
+                )
+            );
         }
 
-        if (isset($hint) && isset(self::$blacklist[$hint])) {
-            $error = sprintf('For type-hinting in PHPDocs and casting, use %s instead of %s', self::$blacklist[$hint], $hint);
+        if (isset($hint) && isset(self::$_blacklist[$hint])) {
+            $error = sprintf(
+                'For type-hinting in PHPDocs and casting, use %s instead of %s',
+                self::$_blacklist[$hint],
+                $hint
+            );
 
             $phpcsFile->addError($error, $stackPtr, 'Invalid');
         }

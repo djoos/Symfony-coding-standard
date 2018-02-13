@@ -107,10 +107,10 @@ class MultiLineArrayCommaSniff implements Sniff
 
                         if ($fix === true) {
                             $ptr = $phpcsFile->findPrevious(
-                              array(T_WHITESPACE, T_COMMENT),
-                              $closePtr-1,
-                              $stackPtr,
-                              true
+                                array(T_WHITESPACE, T_COMMENT),
+                                $closePtr-1,
+                                $stackPtr,
+                                true
                             );
 
                             $phpcsFile->fixer->addContent($ptr, ',');

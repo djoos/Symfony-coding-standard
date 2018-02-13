@@ -2,6 +2,8 @@
 /**
  * Bootstrap file for PHP_CodeSniffer Symfony Coding Standard unit tests.
  *
+ * PHP version 5
+ *
  * @category PHP
  * @package  Symfony-coding-standard
  * @author   Xaver Loppenstedt <xaver@loppenstedt.de>
@@ -14,7 +16,11 @@ $myStandardName = 'Symfony';
 require_once __DIR__.'/vendor/squizlabs/php_codesniffer/tests/bootstrap.php';
 
 // Add this Standard
-PHP_CodeSniffer\Config::setConfigData('installed_paths', __DIR__.DIRECTORY_SEPARATOR.'Symfony', true);
+PHP_CodeSniffer\Config::setConfigData(
+    'installed_paths',
+    __DIR__.DIRECTORY_SEPARATOR.'Symfony',
+    true
+);
 
 // Ignore all other Standards in tests
 $standards   = PHP_CodeSniffer\Util\Standards::getInstalledStandards();
@@ -29,4 +35,3 @@ $ignoredStandardsStr = implode(
 );
 
 putenv("PHPCS_IGNORE_TESTS={$ignoredStandardsStr}");
-

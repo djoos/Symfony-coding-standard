@@ -13,7 +13,7 @@ before_script:
   - phpunit --version
 
 script:
-    - ant travis -Dcomposer.path=composer
+    - ant test -Dcomposer.path=composer
 
 matrix:
   allow_failures:

@@ -31,6 +31,8 @@ class LicenseSniff implements Sniff
 
     /**
      * Registers the tokens that this sniff wants to listen for.
+     *
+     * @return array
      */
     public function register()
     {
@@ -43,11 +45,9 @@ class LicenseSniff implements Sniff
      * Called when one of the token types that this sniff is listening for
      * is found.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The PHP_CodeSniffer file where the
-     *                                               token was found.
-     * @param int                         $stackPtr  The position in the PHP_CodeSniffer
-     *                                               file's token stack where the token
-     *                                               was found.
+     * @param File $phpcsFile The file where the token was found.
+     * @param int  $stackPtr  The position of the current token
+     *                        in the stack passed in $tokens.
      *
      * @return void|int Optionally returns a stack pointer. The sniff will not be
      *                  called again on the current file until the returned stack
@@ -56,9 +56,14 @@ class LicenseSniff implements Sniff
      */
     public function process(File $phpcsFile, $stackPtr)
     {
-        if (false === $phpcsFile->findPrevious([T_COMMENT, T_DOC_COMMENT_OPEN_TAG], $stackPtr)) {
+        if (false === $phpcsFile->findPrevious(
+            [T_COMMENT, T_DOC_COMMENT_OPEN_TAG],
+            $stackPtr
+        )
+        ) {
             $phpcsFile->addWarning(
-                'The license block has to be present at the top of every PHP file, before the namespace',
+                'The license block has to be present at the top
+                of every PHP file, before the namespace',
                 $stackPtr,
                 'Warning'
             );
