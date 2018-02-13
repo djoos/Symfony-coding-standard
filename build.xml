@@ -19,13 +19,14 @@
     </target>
 
     <target name="vendor" description="Load composer repositories" depends="composer">
-        <exec executable="composer" failonerror="true">
+        <exec executable="${composer.path}" failonerror="true">
             <arg value="install" />
         </exec>
     </target>
 
     <target name="composer" description="Download composer" unless="composer.exists">
         <get src="${composer.url}" dest="${composer.path}" />
+        <chmod file="${composer.path}" perm="u+x"/>
     </target>
 
     <target name="lint" description="Perform syntax check">
@@ -46,7 +47,7 @@
         <exec executable="./vendor/bin/phpcs" failonerror="true">
             <arg value="--standard=${phpcs.standard}" />
             <arg value="--extensions=php" />
-            <arg value="--ignore=vendor/*" /> 
+            <arg value="--ignore=vendor/*" />
             <arg path="${basedir}" />
         </exec>
     </target>
