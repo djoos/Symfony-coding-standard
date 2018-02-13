@@ -16,3 +16,14 @@ function bar()
 
     return true;
 }
+
+function baz()
+{
+    if ($a == $b) {
+        $a = function () {
+            return false;
+        };
+    } else {
+        return true;
+    }
+}
