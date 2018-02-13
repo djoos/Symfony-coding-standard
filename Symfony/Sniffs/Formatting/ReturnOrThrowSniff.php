@@ -28,12 +28,12 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class ReturnOrThrowSniff implements Sniff
 {
-    private $openers = [
+    private $_openers = [
         T_IF,
         T_CASE,
     ];
 
-    private $conditions = [
+    private $_conditions = [
         T_ELSEIF,
         T_ELSE,
         T_BREAK,
@@ -41,6 +41,8 @@ class ReturnOrThrowSniff implements Sniff
 
     /**
      * Registers the tokens that this sniff wants to listen for.
+     *
+     * @return array
      */
     public function register()
     {
@@ -77,14 +79,14 @@ class ReturnOrThrowSniff implements Sniff
             return;
         }
 
-        $opener = $phpcsFile->findPrevious($this->openers, $stackPtr, $tokens[$function]['scope_opener']);
+        $opener = $phpcsFile->findPrevious($this->_openers, $stackPtr, $tokens[$function]['scope_opener']);
 
         // check whether the return / throw is within a if or case statement
         if ($opener && $elem['line'] <= $tokens[$tokens[$opener]['scope_closer']]['line']) {
             // check whether there's an elseif / else / break following the if or case statement
-            $condition = $phpcsFile->findNext($this->conditions, $stackPtr + 1, $tokens[$function]['scope_closer']);
+            $condition = $phpcsFile->findNext($this->_conditions, $stackPtr + 1, $tokens[$function]['scope_closer']);
 
-            if (false !== $condition){
+            if (false !== $condition) {
                 if (T_CASE === $tokens[$opener]['code']) {
                     $next = $phpcsFile->findNext([T_CASE, T_DEFAULT], $stackPtr + 1, $tokens[$function]['scope_closer']);
 

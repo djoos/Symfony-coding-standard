@@ -42,8 +42,11 @@ class AlphanumericFilenameSniff implements Sniff
     /**
      * Process.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile
-     * @param int                         $stackPtr
+     * @param \PHP_CodeSniffer\Files\File $phpcsFile The PHP_CodeSniffer file where the
+     *                                               token was found.
+     * @param int                         $stackPtr  The position in the PHP_CodeSniffer
+     *                                               file's token stack where the token
+     *                                               was found.
      *
      * @return int|void
      */

@@ -29,10 +29,12 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 class AnnotationsSniff implements Sniff
 {
 
-    private static $pattern = '/^@([^\\\(]+).*$/i';
+    private static $_pattern = '/^@([^\\\(]+).*$/i';
 
     /**
      * Registers the tokens that this sniff wants to listen for.
+     *
+     * @return array
      */
     public function register()
     {
@@ -62,8 +64,8 @@ class AnnotationsSniff implements Sniff
         $closer = $phpcsFile->findNext(T_DOC_COMMENT_CLOSE_TAG, $stackPtr);
 
         if (false !== $next = $phpcsFile->findNext($this->register(), $stackPtr + 1, $closer)) {
-            $first = preg_replace(self::$pattern, '$1', $tokens[$stackPtr]['content']);
-            $second = preg_replace(self::$pattern, '$1', $tokens[$next]['content']);
+            $first = preg_replace(self::$_pattern, '$1', $tokens[$stackPtr]['content']);
+            $second = preg_replace(self::$_pattern, '$1', $tokens[$next]['content']);
 
             if ($first !== $second && $tokens[$stackPtr]['line'] + 2 > $tokens[$next]['line']) {
                 $phpcsFile->addError(

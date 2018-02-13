@@ -7,7 +7,6 @@
     </condition>
 
     <target name="test" depends="vendor,lint,phpunit,phpcs" />
-    <target name="travis" depends="vendor,lint,phpunit" />
 
     <target name="prepare" depends="clean" description="Prepare for build">
         <mkdir dir="${basedir}/build/coverage" />
@@ -47,6 +46,8 @@
             <arg value="--standard=${phpcs.standard}" />
             <arg value="--extensions=php" />
             <arg value="--ignore=vendor/*" /> 
+            <arg value="-n" />
+            <arg value="-p" />
             <arg path="${basedir}" />
         </exec>
     </target>
