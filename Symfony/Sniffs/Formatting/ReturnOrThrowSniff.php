@@ -83,7 +83,11 @@ class ReturnOrThrowSniff implements Sniff
             $tokens[$function]['scope_opener']
         );
 
-        $scopeCloserLine = $tokens[$tokens[$opener]['scope_closer']]['line'];
+        $scopeCloserLine = -1;
+
+        if ($opener) {
+            $scopeCloserLine = $tokens[$tokens[$opener]['scope_closer']]['line'];
+        }
 
         // check whether the return / throw is within a if or case statement
         if ($opener && $elem['line'] <= $scopeCloserLine) {
