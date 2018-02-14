@@ -18,3 +18,7 @@ script:
 matrix:
   allow_failures:
     - php: nightly
+
+notifications:
+  email:
+    - development@davidjoos.com
