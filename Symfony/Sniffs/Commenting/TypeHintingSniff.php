@@ -74,8 +74,11 @@ class TypeHintingSniff implements Sniff
         $tokens = $phpcsFile->getTokens();
         $tag = $tokens[$stackPtr];
 
+        $fixPtr = $stackPtr;
+
         if ('@var' === $tag['content']) {
             $type = $phpcsFile->findNext(T_DOC_COMMENT_STRING, $stackPtr + 1);
+            $fixPtr = $type;
             $hint = strtolower(
                 preg_replace(
                     '/([^\s]+)[\s]+.*/',
@@ -100,7 +103,26 @@ class TypeHintingSniff implements Sniff
                 $hint
             );
 
-            $phpcsFile->addError($error, $stackPtr, 'Invalid');
+            $fixable = $phpcsFile->addFixableError($error, $stackPtr, 'Invalid');
+
+            if (true === $fixable) {
+
+                if ($fixPtr === $stackPtr) {
+                    $fixedContent = self::$_blacklist[$hint];
+                    $fixedContent = "({$fixedContent})";
+                } else {
+                    $fixedContent = $tokens[$fixPtr]['content'];
+                    $fixedContent = preg_replace(
+                        "/^$hint/",
+                        self::$_blacklist[$hint],
+                        $fixedContent
+                    );
+                }
+
+                $phpcsFile->fixer->beginChangeset();
+                $phpcsFile->fixer->replaceToken($fixPtr, $fixedContent);
+                $phpcsFile->fixer->endChangeset();
+            }
         }
     }
 }
