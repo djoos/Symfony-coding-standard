@@ -43,7 +43,8 @@ class AnnotationsUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            4 => 1,
+            4  => 1,
+            10 => 1,
         );
     }
 

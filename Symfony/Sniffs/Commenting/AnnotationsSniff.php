@@ -88,11 +88,23 @@ class AnnotationsSniff implements Sniff
                 $error .= 'of a different type are separated ';
                 $error .= 'by a single blank line';
 
-                $phpcsFile->addError(
+                $fixable = $phpcsFile->addFixableError(
                     $error,
                     $stackPtr,
                     'Invalid'
                 );
+
+                if (true === $fixable) {
+                    $indentPtr = $phpcsFile->findFirstOnLine(
+                        T_DOC_COMMENT_WHITESPACE,
+                        $next
+                    );
+                    $indentStr = $phpcsFile->getTokensAsString($indentPtr, 1);
+                    $content   = "\n{$indentStr}*";
+                    $phpcsFile->fixer->beginChangeset();
+                    $phpcsFile->fixer->addContentBefore($next - 1, $content);
+                    $phpcsFile->fixer->endChangeset();
+                }
             }
         }
     }
