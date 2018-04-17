@@ -81,7 +81,7 @@ class ReturnTypeSniff implements Sniff
                 }
 
                 if (T_SEMICOLON !== $tokens[$next + 1]['code']) {
-                    $error = 'Use return null; when a function explicitly';
+                    $error = 'Use return null; when a function explicitly ';
                     $error .= 'returns null values and use return; ';
                     $error .= 'when the function returns void values';
 
