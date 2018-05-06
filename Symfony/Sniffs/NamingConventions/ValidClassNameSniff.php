@@ -94,7 +94,7 @@ class ValidClassNameSniff implements Sniff
             if ('T_TRAIT' === $tokens[$stackPtr]['type']) {
                 $name = $phpcsFile->findNext(T_STRING, $stackPtr);
 
-                if ($name && substr($tokens[$name]['content'], -5) != 'Trait') {
+                if ($name && 'Trait' !== substr($tokens[$name]['content'], -5)) {
                     $phpcsFile->addError(
                         'Trait name is not suffixed with "Trait"',
                         $stackPtr,
@@ -111,13 +111,13 @@ class ValidClassNameSniff implements Sniff
                 $extend = $phpcsFile->findNext(T_STRING, $stackPtr);
 
                 if ($extend
-                    && substr($tokens[$extend]['content'], -9) === 'Exception'
+                    && 'Exception' === substr($tokens[$extend]['content'], -9)
                 ) {
                     $class = $phpcsFile->findPrevious(T_CLASS, $stackPtr);
                     $name = $phpcsFile->findNext(T_STRING, $class);
 
                     if ($name
-                        && substr($tokens[$name]['content'], -9) != 'Exception'
+                        && 'Exception' === substr($tokens[$name]['content'], -9)
                     ) {
                         $phpcsFile->addError(
                             'Exception name is not suffixed with "Exception"',
@@ -141,7 +141,7 @@ class ValidClassNameSniff implements Sniff
                 }
 
                 // making sure we're not dealing with an abstract function
-                if (($function === null || $name < $function) && substr($tokens[$name]['content'], 0, 8) !== 'Abstract') {
+                if ((null === $function || $name < $function) && 'Abstract' === substr($tokens[$name]['content'], 0, 8)) {
                     $phpcsFile->addError(
                         'Abstract class name is not prefixed with "Abstract"',
                         $stackPtr,
