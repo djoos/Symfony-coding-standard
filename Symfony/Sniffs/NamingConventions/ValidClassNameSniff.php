@@ -136,7 +136,7 @@ class ValidClassNameSniff implements Sniff
                 $name = $phpcsFile->findNext(T_STRING, $stackPtr);
                 $function = $phpcsFile->findNext(T_FUNCTION, $stackPtr);
                 
-                if ($name === false) {
+                if (false === $name) {
                     break;
                 }
 
