@@ -30,6 +30,8 @@ class ArgumentsSniff implements Sniff
 {
     /**
      * Registers the tokens that this sniff wants to listen for.
+     *
+     * @return array
      */
     public function register()
     {
@@ -42,11 +44,9 @@ class ArgumentsSniff implements Sniff
      * Called when one of the token types that this sniff is listening for
      * is found.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The PHP_CodeSniffer file where the
-     *                                               token was found.
-     * @param int                         $stackPtr  The position in the PHP_CodeSniffer
-     *                                               file's token stack where the token
-     *                                               was found.
+     * @param File $phpcsFile The file where the token was found.
+     * @param int  $stackPtr  The position of the current token
+     *                        in the stack passed in $tokens.
      *
      * @return void|int Optionally returns a stack pointer. The sniff will not be
      *                  called again on the current file until the returned stack
@@ -58,9 +58,19 @@ class ArgumentsSniff implements Sniff
         $tokens = $phpcsFile->getTokens();
         $function = $tokens[$stackPtr];
 
-        if ($tokens[$function['parenthesis_opener']]['line'] !== $tokens[$function['parenthesis_closer']]['line']) {
-            $error = 'Declare all the arguments on the same line as the method/function name, no matter how many arguments there are.';
-            $phpcsFile->addError($error, $stackPtr, 'Invalid');
+        $openerLine = $tokens[$function['parenthesis_opener']]['line'];
+        $closerLine = $tokens[$function['parenthesis_closer']]['line'];
+
+        if ($openerLine !== $closerLine) {
+            $error = 'Declare all the arguments on the same line ';
+            $error .= 'as the method/function name, ';
+            $error .= 'no matter how many arguments there are.';
+
+            $phpcsFile->addError(
+                $error,
+                $stackPtr,
+                'Invalid'
+            );
         }
     }
 

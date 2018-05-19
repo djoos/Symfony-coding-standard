@@ -1,0 +1,25 @@
+<?php
+
+class Foo
+{
+    /**
+     * @var bool $a
+     */
+    protected $a;
+
+    /**
+     * @var int $b
+     */
+    protected $b;
+
+    public function __construct()
+    {
+        $a = (bool) 0;
+        $b = (int) $a;
+
+        $a = (bool) $b;
+        $b = (int) $a;
+    }
+
+}
+

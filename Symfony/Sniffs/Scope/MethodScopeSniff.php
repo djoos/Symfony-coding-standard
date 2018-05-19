@@ -12,7 +12,7 @@
  * @link     https://github.com/djoos/Symfony-coding-standard
  */
 
-namespace Symfony\Sniffs\Objects;
+namespace Symfony\Sniffs\Scope;
 
 use PHP_CodeSniffer\Sniffs\AbstractScopeSniff;
 use PHP_CodeSniffer\Files\File;
@@ -80,8 +80,11 @@ class MethodScopeSniff extends AbstractScopeSniff
     /**
      * Process tokens outside scope.
      *
-     * @param File $phpcsFile
-     * @param int  $stackPtr
+     * @param File $phpcsFile The file being scanned.
+     * @param int  $stackPtr  The position of the current token
+     *                        in the stack passed in $tokens.
+     *
+     * @return void
      */
     protected function processTokenOutsideScope(File $phpcsFile, $stackPtr)
     {

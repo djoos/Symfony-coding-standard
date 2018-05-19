@@ -31,6 +31,8 @@ class UserDeprecatedSniff implements Sniff
 {
     /**
      * Registers the tokens that this sniff wants to listen for.
+     *
+     * @return array
      */
     public function register()
     {
@@ -43,11 +45,9 @@ class UserDeprecatedSniff implements Sniff
      * Called when one of the token types that this sniff is listening for
      * is found.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The PHP_CodeSniffer file where the
-     *                                               token was found.
-     * @param int                         $stackPtr  The position in the PHP_CodeSniffer
-     *                                               file's token stack where the token
-     *                                               was found.
+     * @param File $phpcsFile The file where the token was found.
+     * @param int  $stackPtr  The position of the current token
+     *                        in the stack passed in $tokens.
      *
      * @return void|int Optionally returns a stack pointer. The sniff will not be
      *                  called again on the current file until the returned stack
@@ -73,8 +73,12 @@ class UserDeprecatedSniff implements Sniff
                 break;
             }
 
-            if ($tokens[$string]['content'] === 'E_USER_DEPRECATED' && '@' !== $tokens[$stackPtr -1]['content']) {
-                $error = 'Calls to trigger_error with type E_USER_DEPRECATED must be switched to opt-in via @ operator';
+            if ($tokens[$string]['content'] === 'E_USER_DEPRECATED'
+                && '@' !== $tokens[$stackPtr -1]['content']
+            ) {
+                $error = 'Calls to trigger_error with type E_USER_DEPRECATED ';
+                $error .= 'must be switched to opt-in via @ operator';
+
                 $phpcsFile->addError($error, $stackPtr, 'Invalid');
 
                 break;

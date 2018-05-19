@@ -1,8 +1,14 @@
-Testing
-=======
+# Testing
 
-Contributions to this repository will only be accepted if all tests pass successfully:
+Contributions to this repository will only be accepted if all tests pass successfully.
 
-* PHP syntax/lint checks
-* Unit tests: [PHPUnit](https://phpunit.de/)
-* Coding standard-checks: [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer/wiki)
+## Setting up the test environment
+
+* install PHP
+* install [Java](https://java.com)/[Apache ant](https://ant.apache.org)
+
+...not a fan of Java/ant?
+Run the individual commands listed in build.xml manually!
+
+## Running tests
+`ant test`

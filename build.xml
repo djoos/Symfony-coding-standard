@@ -1,9 +1,12 @@
 <project name="Symfony-coding-standard" default="test">
     <property file="build.properties" />
+    <property environment="env"/>
     <available property="composer.exists" file="${composer.path}" />
+    <condition property="composer.exists">
+        <istrue value="${env.TRAVIS}" />
+    </condition>
 
     <target name="test" depends="vendor,lint,phpunit,phpcs" />
-    <target name="travis" depends="vendor,lint,phpunit" />
 
     <target name="prepare" depends="clean" description="Prepare for build">
         <mkdir dir="${basedir}/build/coverage" />
@@ -15,13 +18,14 @@
     </target>
 
     <target name="vendor" description="Load composer repositories" depends="composer">
-        <exec executable="composer" failonerror="true">
+        <exec executable="${composer.path}" failonerror="true">
             <arg value="install" />
         </exec>
     </target>
 
     <target name="composer" description="Download composer" unless="composer.exists">
         <get src="${composer.url}" dest="${composer.path}" />
+        <chmod file="${composer.path}" perm="u+x"/>
     </target>
 
     <target name="lint" description="Perform syntax check">
@@ -35,14 +39,14 @@
     </target>
 
     <target name="phpunit" description="Run unit tests with PHPUnit">
-        <exec executable="phpunit" failonerror="true" />
+        <exec executable="./vendor/bin/phpunit" failonerror="true" />
     </target>
 
     <target name="phpcs" description="Find coding standard violations using PHP Code Sniffer">
-        <exec executable="phpcs" failonerror="true">
+        <exec executable="./vendor/bin/phpcs" failonerror="true">
             <arg value="--standard=${phpcs.standard}" />
             <arg value="--extensions=php" />
-            <arg value="--ignore=vendor/*" /> 
+            <arg value="--ignore=vendor/*" />
             <arg path="${basedir}" />
         </exec>
     </target>

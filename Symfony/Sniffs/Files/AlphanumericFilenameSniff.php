@@ -42,10 +42,14 @@ class AlphanumericFilenameSniff implements Sniff
     /**
      * Process.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile
-     * @param int                         $stackPtr
+     * @param File $phpcsFile The file where the token was found.
+     * @param int  $stackPtr  The position of the current token
+     *                        in the stack passed in $tokens.
      *
-     * @return int|void
+     * @return void|int Optionally returns a stack pointer. The sniff will not be
+     *                  called again on the current file until the returned stack
+     *                  pointer is reached. Return (count($tokens) + 1) to skip
+     *                  the rest of the file.
      */
     public function process(File $phpcsFile, $stackPtr)
     {
@@ -58,7 +62,10 @@ class AlphanumericFilenameSniff implements Sniff
         $filename = str_replace('_', '', basename($filename, '.php'));
 
         if (false === ctype_alnum($filename)) {
-            $error = sprintf('Filename "%s" contains non alphanumeric characters', $filename);
+            $error = sprintf(
+                'Filename "%s" contains non alphanumeric characters',
+                $filename
+            );
             $phpcsFile->addError($error, $stackPtr, 'Invalid');
             $phpcsFile->recordMetric($stackPtr, 'Alphanumeric filename', 'no');
         } else {

@@ -3,7 +3,7 @@
     "type": "phpcodesniffer-standard",
     "description": "CodeSniffer ruleset for the Symfony 2+ coding standard",
     "keywords": ["Symfony2", "Symfony", "coding standard", "phpcs"],
-    "homepage": "https://github.com/djoos/Symfony2-coding-standard",
+    "homepage": "https://github.com/djoos/Symfony-coding-standard",
     "license": "MIT",
     "authors": [
         {
@@ -21,7 +21,15 @@
         }
     },
     "minimum-stability": "dev",
-    "require": {
-        "squizlabs/php_codesniffer": "3.*"
+    "support" : {
+        "source": "https://github.com/djoos/Symfony-coding-standard",
+        "issues": "https://github.com/djoos/Symfony-coding-standard/issues"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "3.*",
+        "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0"
+    },
+    "conflict": {
+        "squizlabs/php_codesniffer": "<3 || >=4"
     }
 }

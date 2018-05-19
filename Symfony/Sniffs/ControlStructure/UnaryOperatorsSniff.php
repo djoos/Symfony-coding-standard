@@ -18,7 +18,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
 /**
- * Checks whether unary operators are defined on the right side of the variable.
+ * Checks whether unary operators are adjacent to the affected variable.
  *
  * @category PHP
  * @package  Symfony-coding-standard
@@ -30,6 +30,8 @@ class UnaryOperatorsSniff implements Sniff
 {
     /**
      * Registers the tokens that this sniff wants to listen for.
+     *
+     * @return array
      */
     public function register()
     {
@@ -43,11 +45,9 @@ class UnaryOperatorsSniff implements Sniff
      * Called when one of the token types that this sniff is listening for
      * is found.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The PHP_CodeSniffer file where the
-     *                                               token was found.
-     * @param int                         $stackPtr  The position in the PHP_CodeSniffer
-     *                                               file's token stack where the token
-     *                                               was found.
+     * @param File $phpcsFile The file where the token was found.
+     * @param int  $stackPtr  The position of the current token
+     *                        in the stack passed in $tokens.
      *
      * @return void|int Optionally returns a stack pointer. The sniff will not be
      *                  called again on the current file until the returned stack
@@ -58,7 +58,10 @@ class UnaryOperatorsSniff implements Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if (T_VARIABLE === $tokens[$stackPtr - 1]['code'] && T_VARIABLE !== $tokens[$stackPtr + 1]['code']) {
+        if ((T_VARIABLE !== $tokens[$stackPtr - 1]['code']
+            && T_VARIABLE !== $tokens[$stackPtr + 1]['code'])
+            && (T_OBJECT_OPERATOR !== $tokens[$stackPtr - 2]['code'])
+        ) {
             $error = 'Place unary operators adjacent to the affected variable';
             $phpcsFile->addError($error, $stackPtr, 'Invalid');
         }

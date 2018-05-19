@@ -30,6 +30,8 @@ class ReturnTypeSniff implements Sniff
 {
     /**
      * Registers the tokens that this sniff wants to listen for.
+     *
+     * @return array
      */
     public function register()
     {
@@ -42,11 +44,9 @@ class ReturnTypeSniff implements Sniff
      * Called when one of the token types that this sniff is listening for
      * is found.
      *
-     * @param \PHP_CodeSniffer\Files\File $phpcsFile The PHP_CodeSniffer file where the
-     *                                               token was found.
-     * @param int                         $stackPtr  The position in the PHP_CodeSniffer
-     *                                               file's token stack where the token
-     *                                               was found.
+     * @param File $phpcsFile The file where the token was found.
+     * @param int  $stackPtr  The position of the current token
+     *                        in the stack passed in $tokens.
      *
      * @return void|int Optionally returns a stack pointer. The sniff will not be
      *                  called again on the current file until the returned stack
@@ -56,19 +56,37 @@ class ReturnTypeSniff implements Sniff
     public function process(File $phpcsFile, $stackPtr)
     {
         $tokens = $phpcsFile->getTokens();
-        $type = isset($tokens[$stackPtr]['scope_opener']) ? $phpcsFile->findNext(T_RETURN_TYPE, $stackPtr + 1, $tokens[$stackPtr]['scope_opener']) : false;
+
+        $type = false;
+
+        if (isset($tokens[$stackPtr]['scope_opener'])) {
+            $type = $phpcsFile->findNext(
+                T_RETURN_TYPE,
+                $stackPtr + 1,
+                $tokens[$stackPtr]['scope_opener']
+            );
+        }
 
         if (false !== $type && 'void' === strtolower($tokens[$type]['content'])) {
             $next = $stackPtr;
 
             do {
-                if (false === $next = $phpcsFile->findNext(T_RETURN, $next + 1, $tokens[$stackPtr]['scope_closer'])) {
+                if (false === $next = $phpcsFile->findNext(
+                    T_RETURN,
+                    $next + 1,
+                    $tokens[$stackPtr]['scope_closer']
+                )
+                ) {
                     break;
                 }
 
                 if (T_SEMICOLON !== $tokens[$next + 1]['code']) {
+                    $error = 'Use return null; when a function explicitly ';
+                    $error .= 'returns null values and use return; ';
+                    $error .= 'when the function returns void values';
+
                     $phpcsFile->addError(
-                        'Use return null; when a function explicitly returns null values and use return; when the function returns void values',
+                        $error,
                         $next,
                         'Invalid'
                     );
