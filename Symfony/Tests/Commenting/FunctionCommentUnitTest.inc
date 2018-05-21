@@ -27,3 +27,31 @@ function testWithCallBack($tab)
         return $t[0];
     }, $tab);
 }
+
+/**
+ * @inheritdoc
+ */
+function testInheritDocValid1($test)
+{
+}
+
+/**
+ * {@inheritdoc}
+ */
+function testInheritDocValid2($test)
+{
+}
+
+/**
+ * {@inheritdoc
+ */
+function testInheritDocInvalid1($test)
+{
+}
+
+/**
+ * @inheritdoc}
+ */
+function testInheritDocInvalid2($test)
+{
+}
