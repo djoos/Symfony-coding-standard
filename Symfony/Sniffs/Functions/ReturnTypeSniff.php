@@ -80,6 +80,13 @@ class ReturnTypeSniff implements Sniff
                     break;
                 }
 
+                $conditions = $tokens[$next]['conditions'];
+                $lastScope  = key(array_slice($conditions, -1, null, true));
+
+                if ($stackPtr !== $lastScope) {
+                    continue;
+                }
+
                 if (T_SEMICOLON !== $tokens[$next + 1]['code']) {
                     $error = 'Use return null; when a function explicitly ';
                     $error .= 'returns null values and use return; ';
