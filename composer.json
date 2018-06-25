@@ -25,8 +25,10 @@
         "source": "https://github.com/djoos/Symfony-coding-standard",
         "issues": "https://github.com/djoos/Symfony-coding-standard/issues"
     },
+    "require": {
+        "squizlabs/php_codesniffer": "3.*"
+    },
     "require-dev": {
-        "squizlabs/php_codesniffer": "3.*",
         "phpunit/phpunit": "^4.0 || ^5.0 || ^6.0"
     },
     "conflict": {
