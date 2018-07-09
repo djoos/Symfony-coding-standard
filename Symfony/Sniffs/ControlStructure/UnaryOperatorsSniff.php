@@ -61,6 +61,7 @@ class UnaryOperatorsSniff implements Sniff
         if ((T_VARIABLE !== $tokens[$stackPtr - 1]['code']
             && T_VARIABLE !== $tokens[$stackPtr + 1]['code'])
             && (T_OBJECT_OPERATOR !== $tokens[$stackPtr - 2]['code'])
+            && (']' !== $tokens[$stackPtr - 1]['content'])
         ) {
             $error = 'Place unary operators adjacent to the affected variable';
             $phpcsFile->addError($error, $stackPtr, 'Invalid');
