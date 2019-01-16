@@ -57,49 +57,46 @@ class ReturnTypeSniff implements Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $type = false;
+        $methodProperties = $phpcsFile->getMethodProperties($stackPtr);
 
-        if (isset($tokens[$stackPtr]['scope_opener'])) {
-            $type = $phpcsFile->findNext(
-                T_RETURN_TYPE,
-                $stackPtr + 1,
-                $tokens[$stackPtr]['scope_opener']
+        $type = $methodProperties['return_type_token'];
+
+        if (false === $type || 'void' !== strtolower($tokens[$type]['content'])) {
+            return;
+        }
+
+        $next = $stackPtr;
+
+        do {
+            $next = $phpcsFile->findNext(
+                T_RETURN,
+                $next + 1,
+                $tokens[$stackPtr]['scope_closer']
             );
-        }
 
-        if (false !== $type && 'void' === strtolower($tokens[$type]['content'])) {
-            $next = $stackPtr;
+            if (false === $next) {
+                break;
+            }
 
-            do {
-                if (false === $next = $phpcsFile->findNext(
-                    T_RETURN,
-                    $next + 1,
-                    $tokens[$stackPtr]['scope_closer']
-                )
-                ) {
-                    break;
-                }
+            $conditions = $tokens[$next]['conditions'];
+            $lastScope  = key(array_slice($conditions, -1, null, true));
 
-                $conditions = $tokens[$next]['conditions'];
-                $lastScope  = key(array_slice($conditions, -1, null, true));
+            if ($stackPtr !== $lastScope) {
+                continue;
+            }
 
-                if ($stackPtr !== $lastScope) {
-                    continue;
-                }
+            if (T_SEMICOLON !== $tokens[$next + 1]['code']) {
+                $error = 'Use return null; when a function explicitly ';
+                $error .= 'returns null values and use return; ';
+                $error .= 'when the function returns void values';
 
-                if (T_SEMICOLON !== $tokens[$next + 1]['code']) {
-                    $error = 'Use return null; when a function explicitly ';
-                    $error .= 'returns null values and use return; ';
-                    $error .= 'when the function returns void values';
-
-                    $phpcsFile->addError(
-                        $error,
-                        $next,
-                        'Invalid'
-                    );
-                }
-            } while (true);
-        }
+                $phpcsFile->addError(
+                    $error,
+                    $next,
+                    'Invalid'
+                );
+            }
+        } while (true);
     }
 
 }
