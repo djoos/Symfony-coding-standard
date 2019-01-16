@@ -29,3 +29,23 @@ function omg(): void
         }
     };
 }
+
+interface FooInterface
+{
+     public function fooMixed();
+
+     public function voidFoo(): void;
+}
+
+abstract class AbstractFoo
+{
+    public function fooMixed();
+
+    public function voidFoo(): void;
+
+    public function fail(): void
+    {
+        return null;
+    }
+}
+

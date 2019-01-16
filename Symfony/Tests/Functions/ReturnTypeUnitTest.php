@@ -45,6 +45,7 @@ class ReturnTypeUnitTest extends AbstractSniffUnitTest
         return array(
             5 => 1,
             21 => 1,
+            48 => 1,
         );
     }
 
