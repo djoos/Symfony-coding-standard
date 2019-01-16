@@ -68,6 +68,10 @@ class ReturnTypeSniff implements Sniff
         $next = $stackPtr;
 
         do {
+            if (!isset($tokens[$stackPtr]['scope_closer'])) {
+                break;
+            }
+
             $next = $phpcsFile->findNext(
                 T_RETURN,
                 $next + 1,
