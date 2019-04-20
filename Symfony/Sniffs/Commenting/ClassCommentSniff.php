@@ -14,6 +14,7 @@
 
 namespace Symfony\Sniffs\Commenting;
 
+use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Standards\PEAR\Sniffs\Commenting\ClassCommentSniff as Sniff;
 
 /**
@@ -93,6 +94,11 @@ class ClassCommentSniff extends Sniff
         ),
     );
 
+    /**
+     * Blacklisted tags
+     *
+     * @var array<string>
+     */
     protected $blacklist = array(
         '@package',
         '@subpackage',

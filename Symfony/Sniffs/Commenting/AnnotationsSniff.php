@@ -29,6 +29,11 @@ use PHP_CodeSniffer\Sniffs\Sniff;
 class AnnotationsSniff implements Sniff
 {
 
+    /**
+     * Pattern
+     *
+     * @var string
+     */
     private static $_pattern = '/^@([^\\\(]+).*$/i';
 
     /**

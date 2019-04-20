@@ -28,11 +28,21 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class ReturnOrThrowSniff implements Sniff
 {
+    /**
+     * Opener tokens
+     *
+     * @var array
+     */
     private $_openers = [
         T_IF,
         T_CASE,
     ];
 
+    /**
+     * Condition tokens
+     *
+     * @var array
+     */
     private $_conditions = [
         T_ELSEIF,
         T_ELSE,

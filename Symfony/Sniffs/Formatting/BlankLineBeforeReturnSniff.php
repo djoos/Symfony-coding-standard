@@ -108,7 +108,7 @@ class BlankLineBeforeReturnSniff implements Sniff
                     $i++;
                 }
 
-                $phpcsFile->fixer->addNewLine($stackPtr-$i);
+                $phpcsFile->fixer->addNewline($stackPtr-$i);
                 $phpcsFile->fixer->endChangeset();
             }
         }

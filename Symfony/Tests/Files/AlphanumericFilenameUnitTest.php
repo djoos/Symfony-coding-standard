@@ -12,7 +12,7 @@
  * @link     https://github.com/djoos/Symfony2-coding-standard
  */
 
-namespace Symfony\Tests\Commenting;
+namespace Symfony\Tests\Files;
 
 use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
 

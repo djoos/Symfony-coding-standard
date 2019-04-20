@@ -28,6 +28,11 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class TypeHintingSniff implements Sniff
 {
+    /**
+     * Blacklisted types
+     *
+     * @var array<string, string>
+     */
     private static $_blacklist = [
         'boolean' => 'bool',
         'integer' => 'int',
@@ -35,6 +40,11 @@ class TypeHintingSniff implements Sniff
         'real' => 'float',
     ];
 
+    /**
+     * Cast tokens
+     *
+     * @var array
+     */
     private static $_casts = [
         T_BOOL_CAST,
         T_INT_CAST,
