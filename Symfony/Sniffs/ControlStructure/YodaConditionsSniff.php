@@ -28,6 +28,11 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class YodaConditionsSniff implements Sniff
 {
+    /**
+     * Tokens to require Yoda style for
+     *
+     * @var array
+     */
     private $_yodas = array(
         T_IS_EQUAL,
         T_IS_IDENTICAL,
