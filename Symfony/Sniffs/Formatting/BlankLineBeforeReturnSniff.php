@@ -104,7 +104,7 @@ class BlankLineBeforeReturnSniff implements Sniff
             if ($fix === true) {
                 $phpcsFile->fixer->beginChangeset();
                 $i = 1;
-                while ($tokens[$stackPtr-$i]['type'] == "T_WHITESPACE") {
+                while ($tokens[$stackPtr-$i]['type'] === "T_WHITESPACE") {
                     $i++;
                 }
 
