@@ -1,5 +1,16 @@
 <?php
 
+return [
+
+    'api_domain' => env('API_DOMAIN', 'api.example.com'),
+
+    'app_id' => env('APP_ID'),
+
+    'client_id' => env('CLIENT_ID'),
+    'client_secret' => env('CLIENT_SECRET'),
+
+];
+
 function foo(){
     if ($a === $b) {
         return false;
