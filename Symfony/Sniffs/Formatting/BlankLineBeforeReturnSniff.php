@@ -78,7 +78,7 @@ class BlankLineBeforeReturnSniff implements Sniff
         $prevLineTokens  = array();
 
         while ($current >= 0 && $tokens[$current]['line'] >= $previousLine) {
-            if ($tokens[$current]['line'] == $previousLine
+            if ($tokens[$current]['line'] === $previousLine
                 && $tokens[$current]['type'] !== 'T_WHITESPACE'
                 && $tokens[$current]['type'] !== 'T_COMMENT'
                 && $tokens[$current]['type'] !== 'T_DOC_COMMENT_CLOSE_TAG'

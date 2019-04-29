@@ -85,7 +85,7 @@ class ObjectInstantiationSniff implements Sniff
             $object = $phpcsFile->findNext($allowed, $object + 1);
 
             if ($tokens[$object]['line'] === $line
-                && !in_array($tokens[$object + 1]['code'], $allowed)
+                && !in_array($tokens[$object + 1]['code'], $allowed, true)
             ) {
                 if ($tokens[$object + 1]['code'] !== T_OPEN_PARENTHESIS) {
                     $phpcsFile->addError(

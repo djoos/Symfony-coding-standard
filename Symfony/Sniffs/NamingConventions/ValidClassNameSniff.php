@@ -70,7 +70,7 @@ class ValidClassNameSniff implements Sniff
         $tokens   = $phpcsFile->getTokens();
         $line     = $tokens[$stackPtr]['line'];
 
-        while ($tokens[$stackPtr]['line'] == $line) {
+        while ($tokens[$stackPtr]['line'] === $line) {
 
             /*
              * Suffix interfaces with Interface;
@@ -135,7 +135,7 @@ class ValidClassNameSniff implements Sniff
             if ('T_ABSTRACT' === $tokens[$stackPtr]['type']) {
                 $name = $phpcsFile->findNext(T_STRING, $stackPtr);
                 $function = $phpcsFile->findNext(T_FUNCTION, $stackPtr);
-                
+
                 if (false === $name) {
                     break;
                 }
