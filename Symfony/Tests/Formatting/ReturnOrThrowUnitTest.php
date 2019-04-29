@@ -43,7 +43,7 @@ class ReturnOrThrowUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            5 => 1,
+            16 => 1,
         );
     }
 
