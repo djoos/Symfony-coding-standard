@@ -106,7 +106,7 @@ class TypeHintingSniff implements Sniff
             );
         }
 
-        if (isset($hint) && isset(self::$_blacklist[$hint])) {
+        if (isset($hint, self::$_blacklist[$hint])) {
             $error = sprintf(
                 'For type-hinting in PHPDocs and casting, use %s instead of %s',
                 self::$_blacklist[$hint],

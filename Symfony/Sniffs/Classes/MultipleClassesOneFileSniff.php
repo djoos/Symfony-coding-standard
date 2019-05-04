@@ -100,7 +100,5 @@ class MultipleClassesOneFileSniff implements Sniff
                 'Invalid'
             );
         }
-
-        return;
     }
 }

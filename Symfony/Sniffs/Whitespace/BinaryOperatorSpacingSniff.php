@@ -77,11 +77,11 @@ class BinaryOperatorSpacingSniff implements Sniff
 
             if ($fix === true) {
                 if ($tokens[$stackPtr -1]['code'] !== T_WHITESPACE) {
-                    $phpcsFile->fixer->addContentBefore($stackPtr, " ");
+                    $phpcsFile->fixer->addContentBefore($stackPtr, ' ');
                 }
 
                 if ($tokens[$stackPtr +1]['code'] !== T_WHITESPACE) {
-                    $phpcsFile->fixer->addContent($stackPtr, " ");
+                    $phpcsFile->fixer->addContent($stackPtr, ' ');
                 }
             }
         }

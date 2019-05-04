@@ -78,7 +78,7 @@ class CommaSpacingSniff implements Sniff
             );
 
             if ($fix === true) {
-                $phpcsFile->fixer->addContent($stackPtr, " ");
+                $phpcsFile->fixer->addContent($stackPtr, ' ');
             }
         }
     }
