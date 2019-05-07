@@ -96,7 +96,7 @@ class TypeHintingSniff implements Sniff
                     $tokens[$type]['content']
                 )
             );
-        } elseif (in_array($tag['code'], self::$_casts)) {
+        } elseif (in_array($tag['code'], self::$_casts, true)) {
             $hint = strtolower(
                 preg_replace(
                     '/\(([^\s]+)\)/',

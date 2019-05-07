@@ -106,10 +106,11 @@ class ScopeOrderSniff implements Sniff
                     && $name
                     && !in_array(
                         $tokens[$name]['content'],
-                        $whitelisted
+                        $whitelisted,
+                        true
                     )
                 ) {
-                    $current = array_keys($scopes,  $tokens[$scope]['code']);
+                    $current = array_keys($scopes,  $tokens[$scope]['code'], true);
                     $current = $current[0];
 
                     $error = 'Declare public methods first,'
