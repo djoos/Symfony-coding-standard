@@ -102,7 +102,7 @@ class FunctionCommentSniff extends Sniff
         $start = $phpcsFile->findPrevious(T_DOC_COMMENT_OPEN_TAG, $stackPtr - 1);
         $end = $phpcsFile->findNext(T_DOC_COMMENT_CLOSE_TAG, $start);
 
-        $content = $phpcsFile->getTokensAsString($start, ($end - $start));
+        $content = $phpcsFile->getTokensAsString($start, $end - $start);
 
         return
             preg_match('#({@inheritdoc}|(?<!{)@inheritdoc(?!}))#i', $content) === 1;

@@ -67,18 +67,17 @@ class ExceptionMessageSniff implements Sniff
         // check the content of the found parenthesis,
         // only if it is in the same statement as the throw
         $endOfStatement = $phpcsFile->findNext(T_SEMICOLON, $stackPtr);
-        if ($endOfStatement > $opener) {
-            if ($phpcsFile->findNext(
+        if (($endOfStatement > $opener)
+            && $phpcsFile->findNext(
                 T_STRING_CONCAT,
                 $tokens[$opener]['parenthesis_opener'],
                 $tokens[$opener]['parenthesis_closer']
             )
-            ) {
-                $error = 'Exception and error message strings must be ';
-                $error .= 'concatenated using sprintf';
+        ) {
+            $error = 'Exception and error message strings must be ';
+            $error .= 'concatenated using sprintf';
 
-                $phpcsFile->addError($error, $stackPtr, 'Invalid');
-            }
+            $phpcsFile->addError($error, $stackPtr, 'Invalid');
         }
     }
 

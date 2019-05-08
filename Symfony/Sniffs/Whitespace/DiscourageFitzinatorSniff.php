@@ -71,7 +71,7 @@ class DiscourageFitzinatorSniff implements Sniff
         // Make sure this is trailing whitespace.
         $line = $tokens[$stackPtr]['line'];
         if (($stackPtr < count($tokens) - 1)
-            && $tokens[($stackPtr + 1)]['line'] === $line
+            && $tokens[$stackPtr + 1]['line'] === $line
         ) {
             return;
         }

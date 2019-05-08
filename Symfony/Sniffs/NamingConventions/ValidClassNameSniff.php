@@ -155,7 +155,5 @@ class ValidClassNameSniff implements Sniff
 
             $stackPtr++;
         }
-
-        return;
     }
 }

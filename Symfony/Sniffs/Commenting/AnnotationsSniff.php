@@ -18,7 +18,7 @@ use PHP_CodeSniffer\Files\File;
 use PHP_CodeSniffer\Sniffs\Sniff;
 
 /**
- * Checks whether annotations of a different type are seperated with newlines.
+ * Checks whether annotations of a different type are separated with newlines.
  *
  * @category PHP
  * @package  Symfony-coding-standard

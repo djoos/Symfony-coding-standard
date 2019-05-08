@@ -82,9 +82,9 @@ class UserDeprecatedSniff implements Sniff
                 $phpcsFile->addError($error, $stackPtr, 'Invalid');
 
                 break;
-            } else {
-                $opener = $string + 1;
             }
+
+            $opener = $string + 1;
         } while ($opener < $closer);
     }
 
