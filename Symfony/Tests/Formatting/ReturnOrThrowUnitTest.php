@@ -44,6 +44,7 @@ class ReturnOrThrowUnitTest extends AbstractSniffUnitTest
     {
         return array(
             16 => 1,
+            45 => 1,
         );
     }
 

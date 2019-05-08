@@ -38,3 +38,15 @@ function baz()
         return true;
     }
 }
+
+function caseFoo(){
+    switch ($a === $b) {
+    case true:
+        return false;
+        break;
+    case false:
+        return true;
+    default:
+        return null;
+    }
+}
