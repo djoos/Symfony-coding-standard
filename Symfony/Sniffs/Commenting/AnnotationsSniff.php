@@ -28,13 +28,7 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class AnnotationsSniff implements Sniff
 {
-
-    /**
-     * Pattern
-     *
-     * @var string
-     */
-    private static $_pattern = '/^@([^\\\(]+).*$/i';
+    const PATTERN = '/^@([^\\\(]+).*$/i';
 
     /**
      * Registers the tokens that this sniff wants to listen for.
@@ -73,12 +67,12 @@ class AnnotationsSniff implements Sniff
         )
         ) {
             $first = preg_replace(
-                self::$_pattern,
+                self::PATTERN,
                 '$1',
                 $tokens[$stackPtr]['content']
             );
             $second = preg_replace(
-                self::$_pattern,
+                self::PATTERN,
                 '$1',
                 $tokens[$next]['content']
             );

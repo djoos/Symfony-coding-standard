@@ -12,6 +12,11 @@ class Foo
      */
     protected $b;
 
+    /**
+     * @see somewhere
+    */
+    protected $c;
+
     public function __construct()
     {
         $a = (bool) 0;
