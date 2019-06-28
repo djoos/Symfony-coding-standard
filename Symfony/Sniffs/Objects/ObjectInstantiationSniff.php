@@ -81,6 +81,17 @@ class ObjectInstantiationSniff implements Sniff
         $object = $stackPtr;
         $line   = $tokens[$object]['line'];
 
+        if (T_ANON_CLASS === $tokens[$object + 2]['code']) {
+            if ($tokens[$object + 3]['code'] !== T_OPEN_PARENTHESIS) {
+                $phpcsFile->addError(
+                    'Use parentheses when instantiating classes',
+                    $stackPtr,
+                    'Invalid'
+                );
+            }
+            return;
+        }
+
         while ($object && $tokens[$object]['line'] === $line) {
             $object = $phpcsFile->findNext($allowed, $object + 1);
 

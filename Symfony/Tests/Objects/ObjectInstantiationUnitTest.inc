@@ -12,6 +12,7 @@ new Foo::bar;
 new Foo::bar[true];
 new $foo->bar;
 new $foo->bar[true];
+new class {};
 
 // good
 new Foo();
@@ -35,3 +36,4 @@ new self(true);
 new self($this->foo);
 new Foo::bar();
 new $foo->bar();
+new class() implements AnyInterface {};
