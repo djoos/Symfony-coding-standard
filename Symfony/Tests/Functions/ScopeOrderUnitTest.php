@@ -43,8 +43,10 @@ class ScopeOrderUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            7 => 1,
-            9 => 1,
+            7  => 1,
+            9  => 1,
+            15 => 1,
+            17 => 1,
         );
     }
 

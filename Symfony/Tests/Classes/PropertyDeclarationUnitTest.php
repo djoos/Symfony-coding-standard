@@ -43,7 +43,8 @@ class PropertyDeclarationUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            9 => 1,
+            9  => 1,
+            17 => 1,
         );
     }
 

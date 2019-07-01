@@ -51,6 +51,7 @@ class PropertyDeclarationSniff implements Sniff
     {
         return array(
             T_CLASS,
+            T_ANON_CLASS
         );
     }
 
@@ -81,10 +82,15 @@ class PropertyDeclarationSniff implements Sniff
         $wantedTokens = array(
             T_PUBLIC,
             T_PROTECTED,
-            T_PRIVATE
+            T_PRIVATE,
+            T_ANON_CLASS
         );
 
         while ($scope) {
+            if (T_ANON_CLASS === $tokens[$scope]['code']) {
+                $scope = $tokens[$scope]['scope_closer'];
+                continue;
+            }
             $scope = $phpcsFile->findNext(
                 $wantedTokens,
                 $scope + 1,

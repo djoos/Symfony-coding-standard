@@ -54,6 +54,7 @@ class ObjectInstantiationUnitTest extends AbstractSniffUnitTest
             12 => 1,
             13 => 1,
             14 => 1,
+            15 => 1,
         );
     }
 
