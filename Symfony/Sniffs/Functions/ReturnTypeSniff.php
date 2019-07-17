@@ -59,7 +59,7 @@ class ReturnTypeSniff implements Sniff
 
         $methodProperties = $phpcsFile->getMethodProperties($stackPtr);
 
-        $type = $methodProperties['return_type_token'];
+        $type = array_key_exists('return_type_token', $methodProperties) ? $methodProperties['return_type_token'] : false;
 
         if (false === $type || 'void' !== strtolower($tokens[$type]['content'])) {
             return;
