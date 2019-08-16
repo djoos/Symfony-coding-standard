@@ -8,10 +8,14 @@ php:
     - 7.3 # security support until 06/12/2021
     - nightly
 
+addons:
+  apt:
+    packages:
+      ant
+
 before_script:
   - stable='^[0-9\.]+$'; if [[ "$TRAVIS_PHP_VERSION" =~ $stable ]]; then phpenv config-rm xdebug.ini; fi
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
-  - phpunit --version
 
 script:
     - ant test -Dcomposer.path=composer
