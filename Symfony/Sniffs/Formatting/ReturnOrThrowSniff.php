@@ -95,6 +95,10 @@ class ReturnOrThrowSniff implements Sniff
 
         $scopeCloserLine = -1;
 
+        if (false === isset($tokens[$opener]['scope_closer'])) {
+            return;
+        }
+
         if ($opener) {
             $scopeCloserLine = $tokens[$tokens[$opener]['scope_closer']]['line'];
         }
