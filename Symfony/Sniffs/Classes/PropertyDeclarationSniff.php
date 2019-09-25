@@ -97,7 +97,9 @@ class PropertyDeclarationSniff implements Sniff
                 $end
             );
 
-            if ($scope && $tokens[$scope + 2]['code'] === T_VARIABLE) {
+            if ($scope && $tokens[$scope + 2]['code'] === T_VARIABLE
+                && $tokens[$scope]['code'] !== T_ANON_CLASS
+            ) {
                 $phpcsFile->addError(
                     'Declare class properties before methods',
                     $scope,
