@@ -44,6 +44,7 @@ class UserDeprecatedUnitTest extends AbstractSniffUnitTest
     {
         return array(
             3 => 1,
+            9 => 1,
         );
     }
 
