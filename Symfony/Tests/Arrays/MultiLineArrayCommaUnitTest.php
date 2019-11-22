@@ -43,12 +43,13 @@ class MultiLineArrayCommaUnitTest extends AbstractSniffUnitTest
     public function getErrorList()
     {
         return array(
-            11 => 1,
-            27 => 1,
-            43 => 1,
-            53 => 1,
-            74 => 1,
-            84 => 1,
+            11  => 1,
+            27  => 1,
+            43  => 1,
+            53  => 1,
+            74  => 1,
+            84  => 1,
+            106 => 1,
         );
     }
 
