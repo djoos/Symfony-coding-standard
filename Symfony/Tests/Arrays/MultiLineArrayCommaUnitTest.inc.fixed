@@ -96,3 +96,15 @@ $arr = [
 $arr = [
     //'foo' => 'bar',
 ];
+
+$defaultOptions = [
+    'some_default'        => 'values',
+    'another_default'     => 'more values',
+    'yet_another_default' => 'more values', //phpcs:ignore
+];
+
+$defaultOptions = [
+    'some_default'        => 'values',
+    'another_default'     => 'more values',
+    'yet_another_default' => 'more values',  //phpcs:ignore
+];

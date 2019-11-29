@@ -97,6 +97,7 @@ class MultiLineArrayCommaSniff implements Sniff
                     $lastCommaPtr++;
 
                     if ($tokens[$lastCommaPtr]['code'] !== T_WHITESPACE
+                        && $tokens[$lastCommaPtr]['code'] !== T_PHPCS_IGNORE
                         && $tokens[$lastCommaPtr]['code'] !== T_COMMENT
                     ) {
                         $fix = $phpcsFile->addFixableError(
@@ -107,7 +108,7 @@ class MultiLineArrayCommaSniff implements Sniff
 
                         if ($fix === true) {
                             $ptr = $phpcsFile->findPrevious(
-                                array(T_WHITESPACE, T_COMMENT),
+                                array(T_WHITESPACE, T_COMMENT, T_PHPCS_IGNORE),
                                 $closePtr-1,
                                 $stackPtr,
                                 true
