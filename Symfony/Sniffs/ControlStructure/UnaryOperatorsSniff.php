@@ -58,6 +58,12 @@ class UnaryOperatorsSniff implements Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
+        if (T_CLASS === $tokens[$stackPtr + 1]['code']
+            || T_SELF === $tokens[$stackPtr + 1]['code']
+        ) {
+            return;
+        }
+
         if ((T_VARIABLE !== $tokens[$stackPtr - 1]['code']
             && T_VARIABLE !== $tokens[$stackPtr + 1]['code'])
             && (T_OBJECT_OPERATOR !== $tokens[$stackPtr - 2]['code'])
