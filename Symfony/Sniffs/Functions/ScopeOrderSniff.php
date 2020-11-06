@@ -83,11 +83,7 @@ class ScopeOrderSniff implements Sniff
         );
 
         while ($function) {
-            $end = null;
-
-            if (isset($tokens[$stackPtr]['scope_closer'])) {
-                $end = $tokens[$stackPtr]['scope_closer'];
-            }
+            $end = $tokens[$stackPtr]['scope_closer'] ?? null;
 
             $function = $phpcsFile->findNext(
                 array(
