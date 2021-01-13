@@ -49,10 +49,7 @@ class ValidClassNameSniff implements Sniff
     public function register()
     {
         return array(
-            T_INTERFACE,
-            T_TRAIT,
             T_EXTENDS,
-            T_ABSTRACT
         );
     }
 
@@ -71,38 +68,6 @@ class ValidClassNameSniff implements Sniff
         $line     = $tokens[$stackPtr]['line'];
 
         while ($tokens[$stackPtr]['line'] === $line) {
-
-            /*
-             * Suffix interfaces with Interface;
-             */
-            if ('T_INTERFACE' === $tokens[$stackPtr]['type']) {
-                $name = $phpcsFile->findNext(T_STRING, $stackPtr);
-
-                if ($name && substr($tokens[$name]['content'], -9) !== 'Interface') {
-                    $phpcsFile->addError(
-                        'Interface name is not suffixed with "Interface"',
-                        $stackPtr,
-                        'InvalidInterfaceName'
-                    );
-                }
-                break;
-            }
-
-            /*
-             * Suffix traits with Trait;
-             */
-            if ('T_TRAIT' === $tokens[$stackPtr]['type']) {
-                $name = $phpcsFile->findNext(T_STRING, $stackPtr);
-
-                if ($name && substr($tokens[$name]['content'], -5) !== 'Trait') {
-                    $phpcsFile->addError(
-                        'Trait name is not suffixed with "Trait"',
-                        $stackPtr,
-                        'InvalidTraitName'
-                    );
-                }
-                break;
-            }
 
             /*
              * Suffix exceptions with Exception;
@@ -126,26 +91,6 @@ class ValidClassNameSniff implements Sniff
                             'InvalidExceptionName'
                         );
                     }
-                }
-                break;
-            }
-
-            /*
-             * Prefix abstract classes with Abstract.
-             */
-            if ('T_ABSTRACT' === $tokens[$stackPtr]['type']) {
-                $name = $phpcsFile->findNext(T_STRING, $stackPtr);
-                $function = $phpcsFile->findNext(T_FUNCTION, $stackPtr);
-
-                // making sure we're not dealing with an abstract function
-                if ((null === $function|| $name < $function)
-                    && strpos($tokens[$name]['content'], 'Abstract') !== 0
-                ) {
-                    $phpcsFile->addError(
-                        'Abstract class name is not prefixed with "Abstract"',
-                        $stackPtr,
-                        'InvalidAbstractName'
-                    );
                 }
                 break;
             }
