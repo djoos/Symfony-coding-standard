@@ -80,7 +80,13 @@ class DiscourageFitzinatorSniff implements Sniff
             || strpos($tokens[$stackPtr]['content'], "\r") > 0
         ) {
             $warning = 'Please trim any trailing whitespace';
-            $phpcsFile->addWarning($warning, $stackPtr, 'Invalid');
+            $fix = $phpcsFile->addFixableWarning($warning, $stackPtr, 'Invalid');
+            if ($fix === true) {
+                $phpcsFile->fixer->beginChangeset();
+                $phpcsFile->fixer->replaceToken($stackPtr, '');
+                $phpcsFile->fixer->addNewlineBefore($stackPtr);
+                $phpcsFile->fixer->endChangeset();
+            }
         }
     }
 }
