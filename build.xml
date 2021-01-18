@@ -17,7 +17,7 @@
         <delete dir="${basedir}/build" />
     </target>
 
-    <target name="vendor" description="Load composer repositories" depends="composer">
+    <target name="vendor" description="Load composer repositories" depends="composer" unless="${env.TRAVIS}">
         <exec executable="${composer.path}" failonerror="true">
             <arg value="install" />
         </exec>
