@@ -7,6 +7,7 @@ php:
     - 7.2 # security support until 30/11/2020
     - 7.3 # security support until 06/12/2021
     - 7.4 # security support until 28/11/2022
+    - 8.0 # security support until 26/11/2023
     - nightly
 
 addons:
@@ -17,6 +18,13 @@ addons:
 before_script:
   - stable='^[0-9\.]+$'; if [[ "$TRAVIS_PHP_VERSION" =~ $stable ]]; then phpenv config-rm xdebug.ini; fi
   - export PATH="$HOME/.composer/vendor/bin:$PATH"
+  # PHPUnit 8.x is not (yet) supported, so prevent issues with Travis images using it.
+  - |
+    if [[ $TRAVIS_PHP_VERSION == "nightly" || $TRAVIS_PHP_VERSION == "8.0" ]]; then
+      travis_retry composer install --ignore-platform-reqs
+    else
+      travis_retry composer install
+    fi
 
 script:
     - ant test -Dcomposer.path=composer
