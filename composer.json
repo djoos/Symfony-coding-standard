@@ -2,7 +2,7 @@
     "name": "escapestudios/symfony2-coding-standard",
     "type": "phpcodesniffer-standard",
     "description": "CodeSniffer ruleset for the Symfony 2+ coding standard",
-    "keywords": ["Symfony2", "Symfony", "coding standard", "phpcs"],
+    "keywords": ["Symfony2", "Symfony", "coding standard", "phpcs", "static analysis"],
     "homepage": "https://github.com/djoos/Symfony-coding-standard",
     "license": "MIT",
     "authors": [
