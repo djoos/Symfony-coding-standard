@@ -28,7 +28,7 @@ use PHP_CodeSniffer\Sniffs\Sniff;
  */
 class AnnotationsSniff implements Sniff
 {
-    const PATTERN = '/^@([^\\\(]+).*$/i';
+    private const PATTERN = '/^@([^\\\(]+).*$/i';
 
     /**
      * Registers the tokens that this sniff wants to listen for.

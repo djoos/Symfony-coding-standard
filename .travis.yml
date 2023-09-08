@@ -1,9 +1,6 @@
 language: php
 
 php:
-    - 5.6 # security support until 31/12/2018
-    - 7.0 # security support until 03/12/2018
-    - 7.1 # security support until 01/12/2019
     - 7.2 # security support until 30/11/2020
     - 7.3 # security support until 06/12/2021
     - 7.4 # security support until 28/11/2022

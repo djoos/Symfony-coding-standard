@@ -10,9 +10,13 @@
     <!-- Include the whole PSR-1 standard -->
     <rule ref="PSR1"/>
     <!-- Include the whole PSR-2 standard -->
-    <rule ref="PSR2"/>
+    <rule ref="PSR2">
+        <!-- SlevomatCodingStandard.Classes.DisallowMultiPropertyDefinition supports autofixing -->
+        <exclude name="PSR2.Classes.PropertyDeclaration.Multiple"/>
+    </rule>
+    <!-- Forbid multi property definition -->
+    <rule ref="SlevomatCodingStandard.Classes.DisallowMultiPropertyDefinition" />
     <!--
-
     See the [documented coding standard](http://symfony.com/doc/current/contributing/code/standards.html)
     -->
 
@@ -107,5 +111,15 @@
 
     <rule ref="Symfony.Commenting.ClassComment.SpacingBeforeTags">
         <message>There should always be a description, followed by a blank line, before the tags of a class comment.</message>
+    </rule>
+
+    <rule ref="SlevomatCodingStandard.PHP.TypeCast" />
+    <rule ref="SlevomatCodingStandard.TypeHints.LongTypeHints" />
+    <rule ref="SlevomatCodingStandard.Operators.DisallowEqualOperators" />
+    <rule ref="SlevomatCodingStandard.ControlStructures.RequireYodaComparison" />
+    <rule ref="SlevomatCodingStandard.Classes.RequireSingleLineMethodSignature">
+        <properties>
+            <property name="maxLineLength" value="0"/>
+        </properties>
     </rule>
 </ruleset>

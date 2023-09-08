@@ -68,10 +68,7 @@ class PropertyDeclarationSniff implements Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $end = null;
-        if (isset($tokens[$stackPtr]['scope_closer'])) {
-            $end = $tokens[$stackPtr]['scope_closer'];
-        }
+        $end = $tokens[$stackPtr]['scope_closer'] ?? null;
 
         $scope = $phpcsFile->findNext(
             T_FUNCTION,

@@ -96,9 +96,11 @@ class MultiLineArrayCommaSniff implements Sniff
                 while ($lastCommaPtr < $closePtr -1) {
                     $lastCommaPtr++;
 
-                    if ($tokens[$lastCommaPtr]['code'] !== T_WHITESPACE
-                        && $tokens[$lastCommaPtr]['code'] !== T_PHPCS_IGNORE
-                        && $tokens[$lastCommaPtr]['code'] !== T_COMMENT
+                    if (!in_array(
+                        $tokens[$lastCommaPtr]['code'],
+                        [T_WHITESPACE, T_PHPCS_IGNORE, T_COMMENT],
+                        true
+                    )
                     ) {
                         $fix = $phpcsFile->addFixableError(
                             'Add a comma after each item in a multi-line array',
