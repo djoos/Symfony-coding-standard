@@ -44,9 +44,6 @@ class ValidClassNameUnitTest extends AbstractSniffUnitTest
     {
         return array(
             3 => 1,
-            7 => 1,
-            14 => 1,
-            18 => 1,
         );
     }
 
