@@ -93,6 +93,11 @@ class MultiLineArrayCommaSniff implements Sniff
                     $closePtr,
                     $stackPtr
                 );
+
+                if ($lastCommaPtr === false) {
+                    return;
+                }
+
                 while ($lastCommaPtr < $closePtr -1) {
                     $lastCommaPtr++;
 
