@@ -95,7 +95,7 @@ class MultiLineArrayCommaSniff implements Sniff
                 );
 
                 if ($lastCommaPtr === false) {
-                    return;
+                    $lastCommaPtr = 0;
                 }
 
                 while ($lastCommaPtr < $closePtr -1) {
