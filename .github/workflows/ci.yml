@@ -1,4 +1,4 @@
-name: MO4 Coding Standard CI
+name: Symfony coding standard
 on:
   pull_request:
   push:
