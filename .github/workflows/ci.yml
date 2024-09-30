@@ -1,0 +1,37 @@
+name: MO4 Coding Standard CI
+on:
+  pull_request:
+  push:
+jobs:
+  run-tests:
+    strategy:
+      matrix:
+        php_version:
+          - 5.6
+          - 7.0
+          - 7.1
+          - 7.2
+          - 7.3
+          - 7.4
+          - 8.0
+          - 8.1
+          - 8.2
+          - 8.3
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php_version }}
+      - name: Cache dependencies
+        uses: actions/cache@v4
+        with:
+          path: '~/.cache/composer'
+          key: "cache-composer-${{ hashFiles('composer.json') }}"
+          restore-keys: 'cache-composer-'
+      - name: Run composer
+        run: composer update --prefer-dist --no-interaction --no-progress
+      - name: Run tests
+        run: ant test -Dcomposer.path=composer
