@@ -6,7 +6,7 @@
         <istrue value="${env.TRAVIS}" />
     </condition>
 
-    <target name="test" depends="vendor,lint,phpunit,phpcs" />
+    <target name="test" depends="vendor,lint,phpunit,phpcs,phpcs_symfony" />
 
     <target name="prepare" depends="clean" description="Prepare for build">
         <mkdir dir="${basedir}/build/coverage" />
@@ -46,8 +46,15 @@
         <exec executable="./vendor/bin/phpcs" failonerror="true">
             <arg value="--standard=${phpcs.standard}" />
             <arg value="--extensions=php" />
-            <arg value="--ignore=vendor/*" />
+            <arg value="--ignore=vendor/*,test/*" />
             <arg path="${basedir}" />
+        </exec>
+    </target>
+
+    <target name="phpcs_symfony" description="Test Symfony CS against example file from docs">
+        <exec executable="./vendor/bin/phpcs" failonerror="true">
+            <arg value="--standard=${phpcs.symfony_standard}" />
+            <arg path="${basedir}/test/FooBar.php" />
         </exec>
     </target>
 </project>
