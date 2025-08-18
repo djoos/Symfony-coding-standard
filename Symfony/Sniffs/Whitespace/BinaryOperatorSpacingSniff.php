@@ -34,22 +34,13 @@ use PHP_CodeSniffer\Util\Tokens;
 class BinaryOperatorSpacingSniff implements Sniff
 {
     /**
-     * A list of tokenizers this sniff supports.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = array(
-                                   'PHP',
-                                  );
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
      */
     public function register()
     {
-        return Tokens::$comparisonTokens;
+        return Tokens::COMPARISON_TOKENS;
 
     }
 

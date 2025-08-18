@@ -12,7 +12,7 @@
         >
     <testsuites>
         <testsuite name="Symfony Coding Standard Test Suite">
-            <file>./vendor/squizlabs/php_codesniffer/tests/Standards/AllSniffs.php</file>
+            <directory>./Symfony/Tests</directory>
         </testsuite>
     </testsuites>
 </phpunit>

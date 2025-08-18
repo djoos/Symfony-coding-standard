@@ -34,22 +34,13 @@ use PHP_CodeSniffer\Util\Tokens;
 class AssignmentSpacingSniff implements Sniff
 {
     /**
-     * A list of tokenizers this sniff supports.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = array(
-                                   'PHP',
-                                  );
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
      */
     public function register()
     {
-        return Tokens::$assignmentTokens;
+        return Tokens::ASSIGNMENT_TOKENS;
 
     }
 

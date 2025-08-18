@@ -14,7 +14,7 @@
 
 namespace Symfony\Tests\Formatting;
 
-use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
+use PHP_CodeSniffer\Tests\Standards\AbstractSniffTestCase;
 
 /**
  * Unit test class for the BlankLineBeforeReturn sniff.
@@ -30,7 +30,7 @@ use PHP_CodeSniffer\Tests\Standards\AbstractSniffUnitTest;
  * @license  http://spdx.org/licenses/MIT MIT License
  * @link     https://github.com/djoos/Symfony2-coding-standard
  */
-class BlankLineBeforeReturnUnitTest extends AbstractSniffUnitTest
+class BlankLineBeforeReturnUnitTest extends AbstractSniffTestCase
 {
     /**
      * Returns the lines where errors should occur.

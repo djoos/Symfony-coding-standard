@@ -44,9 +44,6 @@
 
     <!-- Import Zend coding standard (which in turn imports PEAR) -->
     <rule ref="Zend">
-        <!-- but exclude their code analyzer -->
-        <exclude name="Zend.Debug.CodeAnalyzer"/>
-
         <!-- covered by Squiz ControlSignature, which enforces try/catch as well -->
         <exclude name="PEAR.ControlStructures.ControlSignature"/>
 
