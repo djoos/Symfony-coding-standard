@@ -33,16 +33,6 @@ use PHP_CodeSniffer\Files\File;
 class ObjectInstantiationSniff implements Sniff
 {
     /**
-     * A list of tokenizers this sniff supports.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = array(
-                                   'PHP',
-                                  );
-
-
-    /**
      * Returns an array of tokens this test wants to listen for.
      *
      * @return array
@@ -69,6 +59,8 @@ class ObjectInstantiationSniff implements Sniff
         $allowed = array(
             T_STRING,
             T_NS_SEPARATOR,
+            T_NAME_FULLY_QUALIFIED,
+            T_NAME_QUALIFIED,
             T_VARIABLE,
             T_STATIC,
             T_SELF,

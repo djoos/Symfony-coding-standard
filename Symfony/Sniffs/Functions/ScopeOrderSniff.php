@@ -32,16 +32,6 @@ use PHP_CodeSniffer\Files\File;
  */
 class ScopeOrderSniff implements Sniff
 {
-
-    /**
-     * A list of tokenizers this sniff supports.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = array(
-        'PHP',
-    );
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -83,11 +73,7 @@ class ScopeOrderSniff implements Sniff
         );
 
         while ($function) {
-            $end = null;
-
-            if (isset($tokens[$stackPtr]['scope_closer'])) {
-                $end = $tokens[$stackPtr]['scope_closer'];
-            }
+            $end = $tokens[$stackPtr]['scope_closer'] ?? null;
 
             $function = $phpcsFile->findNext(
                 array(

@@ -46,7 +46,7 @@ class ClassCommentSniff extends Sniff
      *
      * @var array
      */
-    protected $tags = array(
+    protected const EXPECTED_TAGS = array(
         'category' => array(
             'required' => false,
             'allow_multiple' => false,

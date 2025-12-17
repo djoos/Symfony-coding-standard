@@ -38,6 +38,7 @@ class UserDeprecatedSniff implements Sniff
     {
         return array(
             T_STRING,
+            T_NAME_FULLY_QUALIFIED,
         );
     }
 
@@ -58,7 +59,9 @@ class UserDeprecatedSniff implements Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        if ($tokens[$stackPtr]['content'] !== 'trigger_error') {
+        if ($tokens[$stackPtr]['content'] !== 'trigger_error'
+            && $tokens[$stackPtr]['content'] !== '\trigger_error'
+        ) {
             return;
         }
 

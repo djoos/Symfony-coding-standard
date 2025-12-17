@@ -32,16 +32,6 @@ use PHP_CodeSniffer\Files\File;
  */
 class PropertyDeclarationSniff implements Sniff
 {
-
-    /**
-     * A list of tokenizers this sniff supports.
-     *
-     * @var array
-     */
-    public $supportedTokenizers = array(
-        'PHP',
-    );
-
     /**
      * Returns an array of tokens this test wants to listen for.
      *
@@ -68,10 +58,7 @@ class PropertyDeclarationSniff implements Sniff
     {
         $tokens = $phpcsFile->getTokens();
 
-        $end = null;
-        if (isset($tokens[$stackPtr]['scope_closer'])) {
-            $end = $tokens[$stackPtr]['scope_closer'];
-        }
+        $end = $tokens[$stackPtr]['scope_closer'] ?? null;
 
         $scope = $phpcsFile->findNext(
             T_FUNCTION,

@@ -16,7 +16,7 @@ $myStandardName = 'Symfony';
 require_once __DIR__.'/vendor/squizlabs/php_codesniffer/tests/bootstrap.php';
 
 // Add this Standard
-PHP_CodeSniffer\Config::setConfigData(
+(new PHP_CodeSniffer\Config)->setConfigData(
     'installed_paths',
     __DIR__.DIRECTORY_SEPARATOR.'Symfony',
     true
