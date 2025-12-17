@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/djoos/Symfony-coding-standard/actions/workflows/ci.yml/badge.svg)
+![Build Status](https://github.com/djoos/Symfony-coding-standard/actions/workflows/ci.yml/badge.svg)
 
 # Symfony PHP CodeSniffer Coding Standard
 
