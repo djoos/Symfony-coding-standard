@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/djoos/Symfony-coding-standard.png)](http://travis-ci.org/djoos/Symfony-coding-standard)
+[![Build Status](https://github.com/djoos/Symfony-coding-standard/actions/workflows/ci.yml/badge.svg)
 
 # Symfony PHP CodeSniffer Coding Standard
 
