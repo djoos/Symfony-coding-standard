@@ -30,7 +30,7 @@ This standard can be installed with the [Composer](https://getcomposer.org/) dep
 
 ### Stand-alone
 
-1. Install [PHP_CodeSniffer](https://github.com/squizlabs/PHP_CodeSniffer)
+1. Install [PHP_CodeSniffer](https://github.com/PHPCSStandards/PHP_CodeSniffer)
 
 2. Checkout this repository 
 
