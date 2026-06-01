@@ -60,3 +60,22 @@ class MoreBar
         };
     }
 }
+class WithConstructorPromotion
+{
+    public function __construct(
+        private string $foo,
+        public int $bar,
+        protected bool $baz,
+    ) {
+    }
+}
+class WithConstructorPromotionAndRegularProperty
+{
+    private string $regular;
+
+    public function __construct(
+        private string $promoted,
+    ) {
+        $this->regular = 'value';
+    }
+}
