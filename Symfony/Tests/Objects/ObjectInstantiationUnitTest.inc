@@ -37,3 +37,20 @@ new self($this->foo);
 new Foo::bar();
 new $foo->bar();
 new class() implements AnyInterface {};
+new readonly class() extends Foo {};
+new #[Attr] class() {};
+new #[Attr] readonly class() {};
+new #[Attr(new Foo())] readonly class() {};
+new  class() {};
+new /* comment */ class() {};
+new
+    class() {};
+
+// bad
+new readonly class extends Foo {};
+new #[Attr] class {};
+new #[Attr] readonly class {};
+new  class {};
+new /* comment */ class {};
+new
+    class {};

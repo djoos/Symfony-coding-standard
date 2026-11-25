@@ -55,6 +55,12 @@ class ObjectInstantiationUnitTest extends AbstractSniffTestCase
             13 => 1,
             14 => 1,
             15 => 1,
+            50 => 1,
+            51 => 1,
+            52 => 1,
+            53 => 1,
+            54 => 1,
+            55 => 1,
         );
     }
 

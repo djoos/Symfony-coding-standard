@@ -16,6 +16,7 @@ namespace Symfony\Sniffs\Objects;
 
 use PHP_CodeSniffer\Sniffs\Sniff;
 use PHP_CodeSniffer\Files\File;
+use PHP_CodeSniffer\Util\Tokens;
 
 /**
  * ObjectInstantiationSniff.
@@ -73,8 +74,17 @@ class ObjectInstantiationSniff implements Sniff
         $object = $stackPtr;
         $line   = $tokens[$object]['line'];
 
-        if (T_ANON_CLASS === $tokens[$object + 2]['code']) {
-            if ($tokens[$object + 3]['code'] !== T_OPEN_PARENTHESIS) {
+        $anonClass = $this->findAnonClass($phpcsFile, $stackPtr);
+
+        if (false !== $anonClass) {
+            $next = $phpcsFile->findNext(
+                Tokens::EMPTY_TOKENS,
+                $anonClass + 1,
+                null,
+                true
+            );
+
+            if (false === $next || $tokens[$next]['code'] !== T_OPEN_PARENTHESIS) {
                 $phpcsFile->addError(
                     'Use parentheses when instantiating classes',
                     $stackPtr,
@@ -101,5 +111,45 @@ class ObjectInstantiationSniff implements Sniff
                 break;
             }
         }
+    }
+
+    /**
+     * Returns the position of the anonymous class token instantiated by the
+     * given T_NEW token, skipping attributes, modifiers and comments.
+     *
+     * @param File $phpcsFile The file being scanned.
+     * @param int  $stackPtr  The position of the T_NEW token.
+     *
+     * @return int|false
+     */
+    protected function findAnonClass(File $phpcsFile, $stackPtr)
+    {
+        $tokens = $phpcsFile->getTokens();
+        $skip   = Tokens::EMPTY_TOKENS;
+        $skip[T_READONLY] = T_READONLY;
+
+        $next = $phpcsFile->findNext($skip, $stackPtr + 1, null, true);
+
+        while (false !== $next) {
+            if ($tokens[$next]['code'] === T_ATTRIBUTE
+                && isset($tokens[$next]['attribute_closer'])
+            ) {
+                $next = $phpcsFile->findNext(
+                    $skip,
+                    $tokens[$next]['attribute_closer'] + 1,
+                    null,
+                    true
+                );
+                continue;
+            }
+
+            if ($tokens[$next]['code'] === T_ANON_CLASS) {
+                return $next;
+            }
+
+            break;
+        }
+
+        return false;
     }
 }
