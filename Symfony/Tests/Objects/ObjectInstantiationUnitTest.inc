@@ -45,6 +45,8 @@ new  class() {};
 new /* comment */ class() {};
 new
     class() {};
+new class () {};
+new readonly class () {};
 
 // bad
 new readonly class extends Foo {};
